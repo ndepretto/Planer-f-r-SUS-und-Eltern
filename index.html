@@ -99,9 +99,9 @@
 <div class="bg-primary-fixed text-on-primary-fixed p-space-md rounded-2xl mb-space-lg flex items-center justify-between gap-space-md shadow-sm"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-primary text-[24px]">cloud_sync</span><div><h4 class="font-headline-sm text-on-primary-fixed">Fortschritt wird automatisch gespeichert</h4><p class="text-body-sm text-on-primary-fixed/80">Deine Hausaufgaben und Erledigt-Markierungen werden lokal auf diesem Gerät und in deinem Schülerkonto synchronisiert.</p></div></div><button class="px-space-md py-space-xs rounded-xl bg-primary text-on-primary text-label-sm font-semibold hover:bg-surface-tint transition-all" onclick="alert('Profil ist aktiv und synchronisiert!')">Details</button></div><div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg mb-space-xl">
 <div>
 <div class="flex items-center gap-space-sm mb-space-xs">
-<span class="px-space-sm py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-semibold">Schuljahr 2026/27</span>
+<span class="px-space-sm py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-semibold">Schuljahr 26/27</span>
 <span class="text-body-sm text-on-surface-variant">Woche 14 • 2. Halbjahr</span>
-<select class="bg-surface-container border border-outline-variant rounded-lg px-space-sm py-0.5 text-on-surface text-label-sm outline-none focus:border-primary transition-colors ml-space-sm" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>2023/24</option><option>2024/25</option><option>2025/26</option></select></div>
+<select class="bg-surface-container border border-outline-variant rounded-lg px-space-sm py-0.5 text-on-surface text-label-sm outline-none focus:border-primary transition-colors ml-space-sm" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>26/27</option><option>27/28</option><option>28/29</option></select></div>
 <h2 class="font-headline-lg text-on-surface">Hallo, Max! 👋</h2>
 <p class="text-body-lg text-on-surface-variant">Du hast heute noch 3 offene Aufgaben vor dir. Du schaffst das!</p>
 </div>
@@ -213,7 +213,7 @@
 <input checked="" class="w-6 h-6 rounded-lg accent-primary cursor-pointer" onchange="toggleTask(this)" type="checkbox"/>
 <div>
 <div class="flex items-center gap-space-sm mb-1">
-<span class="px-space-sm py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed text-label-sm font-semibold">Englisch</span>
+<span class="px-space-sm py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed text-label-sm font-semibold">Schuljahr 26/27</span>
 <span class="text-body-sm text-on-surface-variant">Vokabeln Unit 4</span>
 </div>
 <h4 class="font-headline-sm text-on-surface line-through text-outline">S. 112 lernen für Vokabeltest</h4>
@@ -298,13 +298,7 @@
 <form class="space-y-space-md" onsubmit="handleAddTask(event)">
 <div>
 <label class="block text-label-md font-medium text-on-surface mb-space-xs">Fach wählen</label>
-<select class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" onchange="alert('Schuljahr gewechselt zu: ' + this.value);">
-<option>Mathematik</option>
-<option>Physik</option>
-<option>Biologie</option>
-<option>Englisch</option>
-<option>Geschichte</option>
-</select>
+<select class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>26/27</option><option>27/28</option><option>28/29</option></select>
 </div>
 <div>
 <label class="block text-label-md font-medium text-on-surface mb-space-xs">Aufgabentitel / Details</label>
@@ -317,11 +311,7 @@
 </div>
 <div>
 <label class="block text-label-md font-medium text-on-surface mb-space-xs">Priorität</label>
-<select class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" onchange="alert('Schuljahr gewechselt zu: ' + this.value);">
-<option>Normal</option>
-<option>Wichtig</option>
-<option>Sehr wichtig</option>
-</select>
+<select class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>26/27</option><option>27/28</option><option>28/29</option></select>
 </div>
 </div>
 <div class="flex items-center justify-end gap-space-md pt-space-md">
