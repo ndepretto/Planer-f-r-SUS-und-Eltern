@@ -8,8 +8,6 @@
         @layer base { 
             html, body { margin: 0; padding: 0; } 
             body { overscroll-behavior: none; } 
-            main > :first-child { margin-top: 0 !important; } 
-            main > :last-child { margin-bottom: 0 !important; } 
         } 
         ::-webkit-scrollbar { display: none; }
         .custom-scroll::-webkit-scrollbar { display: none; }
@@ -127,15 +125,15 @@
         </div>
         
         <!-- Navigation Buttons -->
-        <nav class="flex-1 px-space-md space-y-space-xs" id="main-nav">
-            <button onclick="switchView('schueler-ansicht')" id="nav-schueler-ansicht" class="w-full flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-colors bg-primary text-on-primary font-semibold">
+        <nav class="flex-1 px-space-md space-y-space-xs">
+            <div class="w-full flex items-center gap-space-md px-space-md py-space-sm rounded-lg bg-primary text-on-primary font-semibold shadow-xs">
                 <span class="material-symbols-outlined">calendar_month</span>Wochenplaner
-            </button>
+            </div>
         </nav>
 
         <!-- Status-Bereich für Freigabe in der Sidebar -->
         <div class="px-space-lg mb-4">
-            <div id="sidebar-status-box" class="p-4 bg-surface-container rounded-xl space-y-2 border border-outline-variant">
+            <div id="sidebar-status-box" class="p-4 bg-error-container rounded-xl space-y-2 border border-error/20">
                 <p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status Eltern-Kontrolle</p>
                 <div class="flex items-center gap-2">
                     <span id="status-icon" class="material-symbols-outlined text-error">lock</span>
@@ -164,10 +162,9 @@
         <header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
             <div class="flex items-center gap-space-md">
                 <span class="material-symbols-outlined text-on-surface-variant">search</span>
-                <input class="bg-transparent text-body-md text-on-surface outline-none placeholder:text-outline w-64" placeholder="Suche nach Aufgaben, Fächern..." type="text"/>
+                <input class="bg-transparent text-body-md text-on-surface outline-none placeholder:text-outline w-64" placeholder="Suche nach Aufgaben..." type="text"/>
             </div>
             <div class="flex items-center gap-space-md">
-                <!-- Cleaner Info-Counter im Header -->
                 <div id="header-counter-widget" class="text-label-sm font-semibold bg-surface-container px-3 py-1.5 rounded-lg flex items-center gap-2">
                     <span id="widget-text">0 Aufgaben insgesamt</span>
                 </div>
@@ -175,9 +172,13 @@
         </header>
 
         <!-- Main Content Area -->
-        <main class="relative pt-16 bg-surface min-h-screen px-space-gutter py-space-gutter">
+        <main class="relative pt-20 bg-surface min-h-screen px-space-gutter py-space-gutter">
             <div class="flex flex-col w-full pb-16 space-y-6">
                 
                 <!-- Schnelleingabe-Zeile für den Schüler -->
                 <div class="bg-surface-container-lowest border border-surface-container-high p-5 rounded-2xl shadow-sm">
                     <h3 class="text-label-md font-bold text-on-surface mb-3 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">add_circle</span> Hausaufgabe / Aufgabe hinzufügen
+                    </h3>
+                    <form id="task-form" class="flex flex-col lg:flex-row items-end gap-4">
+                        <div class="flex-1 w-full">
