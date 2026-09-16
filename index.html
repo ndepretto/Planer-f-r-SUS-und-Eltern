@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Schüler- & Elternplattform</title>
+    <title>Interaktiver Wochenplaner mit Eltern-Signatur</title>
     <style>
         @layer base { 
             html, body { margin: 0; padding: 0; } 
@@ -119,22 +119,30 @@
     <!-- Feste Sidebar links -->
     <aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-space-xl pb-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
         <div class="px-space-lg mb-space-lg flex items-center gap-space-sm">
-            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-md shadow-sm">S</div>
+            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-md shadow-sm">P</div>
             <div>
-                <h1 class="font-headline-sm text-on-surface">Schüler &amp; Eltern</h1>
-                <p class="text-body-sm text-on-surface-variant">Gemeinsame Plattform</p>
+                <h1 class="font-headline-sm text-on-surface">Mein Schulplaner</h1>
+                <p class="text-body-sm text-on-surface-variant">Woche perfekt im Griff</p>
             </div>
         </div>
         
         <!-- Navigation Buttons -->
         <nav class="flex-1 px-space-md space-y-space-xs" id="main-nav">
             <button onclick="switchView('schueler-ansicht')" id="nav-schueler-ansicht" class="w-full flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-colors bg-primary text-on-primary font-semibold">
-                <span class="material-symbols-outlined">school</span>Schüler-Ansicht
-            </button>
-            <button onclick="switchView('eltern-dashboard')" id="nav-eltern-dashboard" class="w-full flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">family_history</span>Eltern-Dashboard
+                <span class="material-symbols-outlined">calendar_month</span>Wochenplaner
             </button>
         </nav>
+
+        <!-- Status-Bereich für Freigabe in der Sidebar -->
+        <div class="px-space-lg mb-4">
+            <div id="sidebar-status-box" class="p-4 bg-surface-container rounded-xl space-y-2 border border-outline-variant">
+                <p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status Eltern-Kontrolle</p>
+                <div class="flex items-center gap-2">
+                    <span id="status-icon" class="material-symbols-outlined text-error">lock</span>
+                    <span id="status-text" class="text-xs font-semibold text-error">Diese Woche ununterschrieben</span>
+                </div>
+            </div>
+        </div>
 
         <!-- User Profil Info unten -->
         <div class="px-space-lg pt-space-md">
@@ -144,7 +152,7 @@
                 </div>
                 <div class="overflow-hidden">
                     <p class="text-label-md font-semibold text-on-surface truncate">Max Mustermann</p>
-                    <p id="user-role-label" class="text-body-sm text-on-surface-variant">Rolle: Schüler</p>
+                    <p class="text-body-sm text-on-surface-variant">Schülerkonto</p>
                 </div>
             </div>
         </div>
@@ -159,22 +167,17 @@
                 <input class="bg-transparent text-body-md text-on-surface outline-none placeholder:text-outline w-64" placeholder="Suche nach Aufgaben, Fächern..." type="text"/>
             </div>
             <div class="flex items-center gap-space-md">
+                <!-- Cleaner Info-Counter im Header -->
                 <div id="header-counter-widget" class="text-label-sm font-semibold bg-surface-container px-3 py-1.5 rounded-lg flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
-                    <span id="widget-text">0 Aufgaben offen</span>
-                </div>
-                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+                    <span id="widget-text">0 Aufgaben insgesamt</span>
                 </div>
             </div>
         </header>
 
         <!-- Main Content Area -->
         <main class="relative pt-16 bg-surface min-h-screen px-space-gutter py-space-gutter">
-            <div class="flex flex-col w-full pb-16">
+            <div class="flex flex-col w-full pb-16 space-y-6">
                 
-                <!-- Info & Sync Bar -->
-                <div class="bg-primary-fixed text-on-primary-fixed p-space-md rounded-2xl mb-space-lg flex items-center justify-between gap-space-md shadow-sm">
-                    <div class="flex items-center gap-space-md">
-                        <span class="material-symbols-outlined text-primary text-[24px]">cloud_sync</span>
-                        <div>
+                <!-- Schnelleingabe-Zeile für den Schüler -->
+                <div class="bg-surface-container-lowest border border-surface-container-high p-5 rounded-2xl shadow-sm">
+                    <h3 class="text-label-md font-bold text-on-surface mb-3 flex items-center gap-2">
