@@ -3,15 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Schul- und Hausaufgabenplaner</title>
-    <!-- Lucide Icons für moderne Symbole -->
+    <title>Schulplaner mit Eltern-Freigabe</title>
+    <!-- Lucide Icons für Symbole -->
     <script src="https://unpkg.com"></script>
     <style>
         @layer base { 
             html, body { margin: 0; padding: 0; } 
             body { overscroll-behavior: none; } 
         } 
-        /* Versteckt Scrollbalken für ein sauberes UI, erlaubt aber das Scrollen in den Boxen */
         .custom-scroll::-webkit-scrollbar { display: none; }
         .custom-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -66,91 +65,100 @@
 </head>
 <body class="bg-background text-on-surface antialiased font-sans min-h-screen flex flex-col">
 
-    <!-- Premium Header -->
-    <header class="bg-white border-b border-surface-container-high shadow-[0_1px_3px_rgba(0,0,0,0.05)] sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <!-- Minimalistischer, übersichtlicher Header -->
+    <header class="bg-white border-b border-surface-container-high shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-container to-secondary-container flex items-center justify-center text-white shadow-md">
-                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                <div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-white shadow-sm">
+                    <i data-lucide="clipboard-check" class="w-5 h-5"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-tight text-inverse-surface">Schüler-Planer</h1>
-                    <p class="text-on-surface-variant text-xs font-medium">Strukturierte Wochenübersicht</p>
+                    <h1 class="text-lg font-bold tracking-tight text-inverse-surface">Hausaufgaben- & Kontrollzentrum</h1>
+                    <p class="text-on-surface-variant text-xs">Schüler erfasst — Eltern unterschreiben digital</p>
                 </div>
             </div>
             
-            <!-- Dashboard Widget im Header -->
-            <div class="flex items-center gap-6 bg-surface-container-low border border-surface-variant/40 px-4 py-2 rounded-xl text-xs font-medium">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
-                    <span class="text-on-surface-variant"><strong id="stats-open" class="text-on-surface text-sm">0</strong> offen</span>
-                </div>
-                <div class="w-px h-4 bg-surface-variant"></div>
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-secondary-container"></span>
-                    <span class="text-on-surface-variant"><strong id="stats-done" class="text-on-surface text-sm">0</strong> erledigt</span>
-                </div>
-                <div class="w-px h-4 bg-surface-variant"></div>
-                <div class="flex items-center gap-3">
-                    <span class="text-on-surface-variant">Fortschritt:</span>
-                    <div class="w-20 bg-surface-variant h-2 rounded-full overflow-hidden inline-block relative">
-                        <div id="progress-bar" class="bg-primary-container h-full w-[0%] transition-all duration-500 rounded-full"></div>
-                    </div>
-                </div>
+            <!-- Info-Status -->
+            <div id="parent-status-widget" class="text-xs bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-lg font-medium text-on-surface-variant flex items-center gap-2">
+                <i data-lucide="info" class="w-4 h-4 text-primary-container"></i>
+                <span id="widget-text">0 Aufgaben warten auf Unterschrift</span>
             </div>
         </div>
     </header>
 
     <!-- Hauptbereich -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1 w-full">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 w-full">
         
-        <!-- Linke Spalte: Formular (4 von 12 Spalten) -->
-        <div class="lg:col-span-4 space-y-6">
-            <div class="bg-white border border-surface-container-high p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] sticky top-24">
-                <div class="flex items-center gap-2 mb-5 pb-3 border-b border-surface-container-low">
-                    <i data-lucide="edit-3" class="w-5 h-5 text-primary-container"></i>
-                    <h3 class="font-bold text-inverse-surface text-base">Neue Aufgabe erfassen</h3>
-                </div>
-                
-                <form id="task-form" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Was steht an?</label>
-                        <input type="text" id="task-title" required class="w-full bg-surface-container-low border border-surface-variant/40 rounded-xl p-3 text-sm text-on-surface placeholder-outline/50 focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-white transition-all" placeholder="z.B. Buch S. 12 Aufgaben 1-4">
+        <!-- ================= LINKS: SCHÜLER-BEREICH (8 von 12 Spalten) ================= -->
+        <div class="lg:col-span-8 space-y-6">
+            
+            <!-- Schnellerfasser-Zeile -->
+            <div class="bg-white border border-surface-container-high p-4 rounded-xl shadow-sm">
+                <form id="task-form" class="flex flex-col md:flex-row items-end gap-3">
+                    <div class="flex-1 w-full">
+                        <label class="block text-[11px] font-bold text-on-surface-variant uppercase mb-1">Neue Aufgabe / Hausaufgabe</label>
+                        <input type="text" id="task-title" required class="w-full bg-surface-container-low border border-surface-variant/50 rounded-lg p-2 text-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container" placeholder="z.B. Mathebuch S. 44 Nr. 1 und 2">
                     </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Fach</label>
-                            <select id="task-subject" class="w-full bg-surface-container-low border border-surface-variant/40 rounded-xl p-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-white transition-all">
-                                <option value="Mathe">📐 Mathe</option>
-                                <option value="Deutsch">📝 Deutsch</option>
-                                <option value="Englisch">🇬🇧 Englisch</option>
-                                <option value="Französisch">🇫🇷 Französisch</option>
-                                <option value="Biologie">🌿 Biologie</option>
-                                <option value="Geschichte">⏳ Geschichte</option>
-                                <option value="Chemie">🧪 Chemie</option>
-                                <option value="Physik">⚡ Physik</option>
-                                <option value="Sonstiges">✏️ Sonstiges</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Wochentag</label>
-                            <select id="task-day" class="w-full bg-surface-container-low border border-surface-variant/40 rounded-xl p-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-white transition-all">
-                                <option value="monday">Montag</option>
-                                <option value="tuesday">Dienstag</option>
-                                <option value="wednesday">Mittwoch</option>
-                                <option value="thursday">Donnerstag</option>
-                                <option value="friday">Freitag</option>
-                            </select>
-                        </div>
+                    <div class="w-full md:w-32">
+                        <label class="block text-[11px] font-bold text-on-surface-variant uppercase mb-1">Fach</label>
+                        <select id="task-subject" class="w-full bg-surface-container-low border border-surface-variant/50 rounded-lg p-2 text-sm text-on-surface focus:outline-none">
+                            <option value="Mathe">Mathe</option>
+                            <option value="Deutsch">Deutsch</option>
+                            <option value="Englisch">Englisch</option>
+                            <option value="NMG / Bio">NMG / Bio</option>
+                            <option value="Franz">Franz</option>
+                            <option value="Anderes">Sonstiges</option>
+                        </select>
                     </div>
+                    <div class="w-full md:w-36">
+                        <label class="block text-[11px] font-bold text-on-surface-variant uppercase mb-1">Abgabetag</label>
+                        <select id="task-day" class="w-full bg-surface-container-low border border-surface-variant/50 rounded-lg p-2 text-sm text-on-surface focus:outline-none">
+                            <option value="monday">Montag</option>
+                            <option value="tuesday">Dienstag</option>
+                            <option value="wednesday">Mittwoch</option>
+                            <option value="thursday">Donnerstag</option>
+                            <option value="friday">Freitag</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full md:w-auto px-4 py-2 bg-inverse-surface text-white text-sm font-semibold rounded-lg hover:bg-primary-container transition flex items-center justify-center gap-1.5 whitespace-nowrap shadow-sm">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Eintragen
+                    </button>
+                </form>
+            </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Kategorie</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex items-center justify-center gap-2 bg-surface-container-low border border-surface-variant/40 p-3 rounded-xl text-xs font-medium cursor-pointer hover:bg-surface-container-high transition" id="label-homework">
-                                <input type="radio" name="task-type" value="homework" checked class="text-primary-container focus:ring-primary-container hidden">
-                                <i data-lucide="book-open" class="w-4 h-4 text-primary-container"></i> Hausaufgabe
-                            </label>
-                            <label class="flex items-center justify-center gap-2 bg-surface-container-low border border-surface-variant/40 p-3 rounded-xl text-xs font-medium cursor-pointer hover:bg-error-container/20 transition" id="label-exam">
-                                <input type="radio" name="task-type" value="exam" class="text-error focus:ring-error hidden">
+            <!-- Die Schulwoche im Fokus -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-bold text-inverse-surface uppercase tracking-wider flex items-center gap-2 px-1">
+                    <i data-lucide="calendar" class="w-4 h-4 text-outline"></i> Aktuelle Schulwoche
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                    <!-- Montag -->
+                    <div class="bg-white border border-surface-container-high rounded-xl p-3 flex flex-col min-h-[220px]">
+                        <div class="font-bold text-xs text-inverse-surface pb-1.5 border-b border-surface-container-low flex justify-between">
+                            <span>Montag</span><span class="text-outline/40">Mo</span>
+                        </div>
+                        <div id="day-monday" class="space-y-1.5 pt-2 flex-1 overflow-y-auto custom-scroll"></div>
+                    </div>
+                    <!-- Dienstag -->
+                    <div class="bg-white border border-surface-container-high rounded-xl p-3 flex flex-col min-h-[220px]">
+                        <div class="font-bold text-xs text-inverse-surface pb-1.5 border-b border-surface-container-low flex justify-between">
+                            <span>Dienstag</span><span class="text-outline/40">Di</span>
+                        </div>
+                        <div id="day-tuesday" class="space-y-1.5 pt-2 flex-1 overflow-y-auto custom-scroll"></div>
+                    </div>
+                    <!-- Mittwoch -->
+                    <div class="bg-white border border-surface-container-high rounded-xl p-3 flex flex-col min-h-[220px]">
+                        <div class="font-bold text-xs text-inverse-surface pb-1.5 border-b border-surface-container-low flex justify-between">
+                            <span>Mittwoch</span><span class="text-outline/40">Mi</span>
+                        </div>
+                        <div id="day-wednesday" class="space-y-1.5 pt-2 flex-1 overflow-y-auto custom-scroll"></div>
+                    </div>
+                    <!-- Donnerstag -->
+                    <div class="bg-white border border-surface-container-high rounded-xl p-3 flex flex-col min-h-[220px]">
+                        <div class="font-bold text-xs text-inverse-surface pb-1.5 border-b border-surface-container-low flex justify-between">
+                            <span>Donnerstag</span><span class="text-outline/40">Do</span>
+                        </div>
+                        <div id="day-thursday" class="space-y-1.5 pt-2 flex-1 overflow-y-auto custom-scroll"></div>
+                    </div>
+                    <!-- Freitag -->
