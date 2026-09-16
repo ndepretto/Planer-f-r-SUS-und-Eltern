@@ -101,7 +101,7 @@
 <div class="flex items-center gap-space-sm mb-1">
 <span class="text-label-sm font-label-sm text-primary uppercase tracking-wider">Akademischer Kalender</span>
 <span class="text-on-surface-variant">•</span>
-<span class="text-label-sm font-label-sm text-on-surface-variant" id="sub-header-week">Wochenübersicht 2025/2026</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant" id="sub-header-week">Wochenübersicht 2026/2027</span>
 </div>
 <h2 class="font-headline-lg text-headline-lg text-on-surface">Wochenplanung &amp; Aufgaben</h2>
 </div>
@@ -116,29 +116,14 @@
 <span class="material-symbols-outlined text-primary text-[20px]">calendar_month</span>
 <div>
 <p class="text-label-md font-label-md text-on-surface" id="current-kw">KW 42</p>
-<p class="text-body-sm text-on-surface-variant" id="current-date-range">12. Okt – 18. Okt 2026</p>
+<p class="text-body-sm text-on-surface-variant" id="current-date-range">12. Okt – 16. Okt 2026</p>
 </div>
 </div>
 <span class="material-symbols-outlined text-outline text-[18px]">expand_more</span>
 </div>
 <!-- Dropdown Menu -->
-<div class="hidden absolute left-0 mt-2 w-full bg-surface rounded-xl shadow-lg border border-outline-variant/30 z-50 py-2" id="week-dropdown">
-<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high text-on-surface text-body-md flex items-center justify-between" data-kw="41" data-range="05. Okt – 11. Okt 2026">
-<span>KW 41</span>
-<span class="text-body-sm text-outline">05. Okt – 11. Okt</span>
-</button>
-<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high text-on-surface text-body-md flex items-center justify-between bg-surface-container" data-kw="42" data-range="12. Okt – 18. Okt 2026">
-<span>KW 42 (Aktuell)</span>
-<span class="text-body-sm text-outline">12. Okt – 18. Okt</span>
-</button>
-<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high text-on-surface text-body-md flex items-center justify-between" data-kw="43" data-range="19. Okt – 25. Okt 2026">
-<span>KW 43</span>
-<span class="text-body-sm text-outline">19. Okt – 25. Okt</span>
-</button>
-<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high text-on-surface text-body-md flex items-center justify-between" data-kw="44" data-range="26. Okt – 01. Nov 2026">
-<span>KW 44</span>
-<span class="text-body-sm text-outline">26. Okt – 01. Nov</span>
-</button>
+<div class="hidden absolute left-0 mt-2 w-64 max-h-80 overflow-y-auto bg-surface rounded-xl shadow-lg border border-outline-variant/30 z-50 py-2" id="week-dropdown">
+<!-- Populated dynamically -->
 </div>
 </div>
 <button class="w-10 h-10 rounded-lg bg-surface hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors shadow-sm" id="next-week-btn" title="Nächste Woche">
@@ -163,13 +148,13 @@
 <p class="text-body-sm text-on-surface-variant">Diese Woche erledigen</p>
 </div>
 </div>
-<span class="text-headline-sm text-primary" id="task-counter">4/7</span>
+<span class="text-headline-sm text-primary" id="task-counter">4/6</span>
 </div>
 <div>
 <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden mb-2">
-<div class="bg-primary h-full rounded-full transition-all duration-500" id="progress-bar" style="width: 57%;"></div>
+<div class="bg-primary h-full rounded-full transition-all duration-500" id="progress-bar" style="width: 66%;"></div>
 </div>
-<p class="text-body-sm text-on-surface-variant text-right" id="tasks-remaining-text">3 Aufgaben verbleibend</p>
+<p class="text-body-sm text-on-surface-variant text-right" id="tasks-remaining-text">2 Aufgaben verbleibend</p>
 </div>
 </div>
 <!-- Next Exam Card -->
@@ -213,138 +198,7 @@
 </div>
 <!-- Weekly Schedule Grid -->
 <div class="grid grid-cols-1 md:grid-cols-5 gap-space-lg" id="weekly-grid">
-<!-- Montag -->
-<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
-<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Montag</h4>
-<p class="day-date text-body-sm text-on-surface-variant">12. Okt</p>
-</div>
-<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm text-on-surface-variant">3</span>
-</div>
-<div class="flex flex-col gap-space-sm">
-<!-- Task Item -->
-<div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-label-sm font-label-sm">Mathematik</span>
-<span class="w-5 h-5 rounded border-2 border-primary flex items-center justify-center cursor-pointer bg-primary text-on-primary task-checkbox">
-<span class="material-symbols-outlined text-[14px]">check</span>
-</span>
-</div>
-<p class="text-body-md text-on-surface font-medium line-through text-outline">S. 42 Nr. 5 a-c bearbeiten</p>
-<div class="mt-3 flex items-center justify-between text-body-sm text-on-surface-variant">
-<span>Bis 08:00</span>
-<span class="text-primary font-label-md">Erledigt</span>
-</div>
-</div>
-<!-- Task Item -->
-<div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm">Englisch</span>
-<span class="w-5 h-5 rounded border-2 border-outline hover:border-primary flex items-center justify-center cursor-pointer transition-colors task-checkbox"></span>
-</div>
-<p class="text-body-md text-on-surface font-medium">Vocabulary Unit 4 learn phrases</p>
-<div class="mt-3 flex items-center justify-between text-body-sm text-on-surface-variant">
-<span>Vokabeltest</span>
-<span class="text-secondary font-label-md">Wichtig</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Dienstag -->
-<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
-<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Dienstag</h4>
-<p class="day-date text-body-sm text-on-surface-variant">13. Okt</p>
-</div>
-<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm text-on-surface-variant">2</span>
-</div>
-<div class="flex flex-col gap-space-sm">
-<div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm">Biologie</span>
-<span class="w-5 h-5 rounded border-2 border-outline hover:border-primary flex items-center justify-center cursor-pointer transition-colors task-checkbox"></span>
-</div>
-<p class="text-body-md text-on-surface font-medium">Zeichnung der Pflanzenzelle fertigstellen</p>
-<div class="mt-3 flex items-center justify-between text-body-sm text-on-surface-variant">
-<span>S. 112</span>
-<span class="text-tertiary font-label-md">Abgabe</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Mittwoch -->
-<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
-<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Mittwoch</h4>
-<p class="day-date text-body-sm text-on-surface-variant">14. Okt</p>
-</div>
-<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm text-on-surface-variant">1</span>
-</div>
-<div class="flex flex-col gap-space-sm">
-<div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-label-sm font-label-sm">Geschichte</span>
-<span class="w-5 h-5 rounded border-2 border-primary flex items-center justify-center cursor-pointer bg-primary text-on-primary task-checkbox">
-<span class="material-symbols-outlined text-[14px]">check</span>
-</span>
-</div>
-<p class="text-body-md text-on-surface font-medium line-through text-outline">Arbeitsblatt Französische Revolution</p>
-<div class="mt-3 flex items-center justify-between text-body-sm text-on-surface-variant">
-<span>Online Quiz</span>
-<span class="text-primary font-label-md">Erledigt</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Donnerstag -->
-<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)] border-2 border-primary/20">
-<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-primary">Donnerstag</h4>
-<p class="day-date text-body-sm text-on-surface-variant">15. Okt</p>
-</div>
-<span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-sm font-bold">!</span>
-</div>
-<div class="flex flex-col gap-space-sm">
-<div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all border-l-4 border-primary">
-<div class="flex items-center justify-between mb-2">
-<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-label-sm">Mathematik</span>
-<span class="w-5 h-5 rounded border-2 border-outline hover:border-primary flex items-center justify-center cursor-pointer transition-colors task-checkbox"></span>
-</div>
-<p class="text-body-md text-on-surface font-bold">Schulaufgabe Vektorrechnung</p>
-<div class="mt-3 flex items-center justify-between text-body-sm text-on-surface-variant">
-<span>Raum 204</span>
-<span class="text-error font-label-md">Hauptprüfung</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Freitag -->
-<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
-<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
-<div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Freitag</h4>
-<p class="day-date text-body-sm text-on-surface-variant">16. Okt</p>
-</div>
-<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm text-on-surface-variant">2</span>
-</div>
-<div class="flex flex-col gap-space-sm">
-<div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all">
-<div class="flex items-center justify-between mb-2">
-<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm">Sport</span>
-<span class="w-5 h-5 rounded border-2 border-outline hover:border-primary flex items-center justify-center cursor-pointer transition-colors task-checkbox"></span>
-</div>
-<p class="text-body-md text-on-surface font-medium">Sportzeug mitbringen (Halle)</p>
-<div class="mt-3 flex items-center justify-between text-body-sm text-on-surface-variant">
-<span>1. Stunde</span>
-<span class="text-on-surface-variant font-label-md">Hinweis</span>
-</div>
-</div>
-</div>
-</div>
+<!-- Grid rendered dynamically -->
 </div>
 <!-- Bottom Section: Additional Notes & Parent Sign-off -->
 <div class="mt-space-lg bg-surface-container-low rounded-xl p-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.02)] flex flex-col md:flex-row items-center justify-between gap-space-lg">
@@ -370,21 +224,6 @@
 </div>
 </div></main></div>
 <script>
-  // ISO-8601 Calendar Week calculation helpers for 2026 and dynamic years
-  function getISOWeek(date) {
-    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-    const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-    return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
-  }
-
-  function getISOWeekYear(date) {
-    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-    return d.getUTCFullYear();
-  }
-
-  // Generates precise dates for any ISO year and week number according to ISO-8601
   function getDaysOfISOWeek(year, week) {
     const simple = new Date(Date.UTC(year, 0, 1));
     const dayOfWeek = simple.getUTCDay() || 7;
@@ -409,92 +248,64 @@
     return days;
   }
 
-  // Dynamic 2026 setup
   const baseYear = 2026;
-  
-  // Build dynamic weeksData for 2026 or surrounding context
-  function generateWeeksDataForYear(year) {
-    const weeks = {};
-    const sampleWeeks = [41, 42, 43, 44];
-    
-    sampleWeeks.forEach(kw => {
-      const days = getDaysOfISOWeek(year, kw);
-      const startDateStr = `${days[0].formatted} ${days[0].year}`;
-      const endDateStr = `${days[4].formatted} ${days[4].year}`;
-      const dateRange = `${days[0].formatted} – ${endDateStr}`;
-      
-      let examSub = "Mathematik Schulaufgabe";
-      let examDayName = "Donnerstag";
-      let examTp = "Thema: Vektorrechnung & Analytische Geometrie";
-      
-      if (kw === 41) {
-        examSub = "Physik Kurztest";
-        examDayName = "Mittwoch";
-        examTp = "Thema: Mechanische Energie";
-      } else if (kw === 43) {
-        examSub = "Englisch Vokabeltest";
-        examDayName = "Dienstag";
-        examTp = "Thema: Unit 4 complete vocabulary";
-      } else if (kw === 44) {
-        examSub = "Keine Prüfungen";
-        examDayName = "Ferien";
-        examTp = "Thema: Erholung & Projektvorbereitung";
-      }
+  const weeksData = {};
 
-      let taskList = [
+  for (let kw = 1; kw <= 52; kw++) {
+    const days = getDaysOfISOWeek(baseYear, kw);
+    const dateRange = `${days[0].formatted} – ${days[4].formatted} ${days[4].year}`;
+    
+    let examSub = kw === 42 ? "Mathematik Schulaufgabe" : `Prüfung / Test KW ${kw}`;
+    let examDayName = kw === 42 ? "Donnerstag" : "Mittwoch";
+    let examTp = kw === 42 ? "Thema: Vektorrechnung & Analytische Geometrie" : "Thema gemäß Lehrplan";
+
+    let taskList = [
+      [
+        {subject: "Fach A", title: `Aufgaben für Montag in KW ${kw}`, done: false, time: "Bis 08:00", status: "Wichtig"}
+      ],
+      [
+        {subject: "Fach B", title: `Lernstoff für Dienstag KW ${kw}`, done: true, time: "S. 10", status: "Erledigt"}
+      ],
+      [
+        {subject: "Fach C", title: `Wöchentliches Projekt Mittwoch`, done: false, time: "Online", status: "Aufgabe"}
+      ],
+      [
+        {subject: kw === 42 ? "Mathematik" : "Prüfung", title: kw === 42 ? "Schulaufgabe Vektorrechnung" : "Hauptprüfung KW " + kw, done: false, time: "Raum 204", status: "Hauptprüfung", isExam: true}
+      ],
+      [
+        {subject: "Sport", title: "Sportzeug mitbringen", done: false, time: "1. Stunde", status: "Hinweis"}
+      ]
+    ];
+
+    if (kw === 42) {
+      taskList = [
         [{subject: "Mathematik", title: "S. 42 Nr. 5 a-c bearbeiten", done: true, time: "Bis 08:00", status: "Erledigt"}, {subject: "Englisch", title: "Vocabulary Unit 4 learn phrases", done: false, time: "Vokabeltest", status: "Wichtig"}],
         [{subject: "Biologie", title: "Zeichnung der Pflanzenzelle fertigstellen", done: false, time: "S. 112", status: "Abgabe"}],
         [{subject: "Geschichte", title: "Arbeitsblatt Französische Revolution", done: true, time: "Online Quiz", status: "Erledigt"}],
         [{subject: "Mathematik", title: "Schulaufgabe Vektorrechnung", done: false, time: "Raum 204", status: "Hauptprüfung", isExam: true}],
         [{subject: "Sport", title: "Sportzeug mitbringen (Halle)", done: false, time: "1. Stunde", status: "Hinweis"}]
       ];
+    }
 
-      if (kw === 41) {
-        taskList = [
-          [{subject: "Deutsch", title: "Lektüre S. 15-20 lesen", done: true, time: "Bis 08:00", status: "Erledigt"}, {subject: "Chemie", title: "Periodensystem lernen", done: false, time: "Test", status: "Vorbereitung"}],
-          [{subject: "Mathematik", title: "Übungsaufgaben Termumformung", done: true, time: "Abgabe", status: "Erledigt"}],
-          [{subject: "Physik", title: "Kurztest Vorbereitung", done: false, time: "3. Stunde", status: "Wichtig"}],
-          [{subject: "Erdkunde", title: "Klimadiagramm auswerten", done: false, time: "S. 34", status: "Aufgabe"}],
-          [{subject: "Musik", title: "Notenlehre Wiederholung", done: false, time: "Freitag", status: "Hinweis"}]
-        ];
-      } else if (kw === 43) {
-        taskList = [
-          [{subject: "Latein", title: "Vokabeln Lektion 12 lernen", done: false, time: "Bis 08:00", status: "Wichtig"}],
-          [{subject: "Englisch", title: "Unit 4 Vokabeltest vorbereiten", done: false, time: "2. Stunde", status: "Prüfung"}],
-          [{subject: "Informatik", title: "Python Grundlagen Skript lesen", done: true, time: "Online", status: "Erledigt"}],
-          [{subject: "Religion", title: "Reflexion zum Thema Ethik schreiben", done: false, time: "S. 88", status: "Abgabe"}],
-          [{subject: "Kunst", title: "Skizzenblock mitbringen", done: false, time: "Freitag", status: "Hinweis"}]
-        ];
-      } else if (kw === 44) {
-        taskList = [
-          [{subject: "Projekt", title: "Themenwahl für Jahresarbeit", done: false, time: "Online", status: "Aufgabe"}],
-          [],
-          [],
-          [],
-          [{subject: "Allgemein", title: "Materialien sortieren", done: false, time: "Zuhause", status: "Hinweis"}]
-        ];
-      }
+    const totalTasks = taskList.reduce((acc, curr) => acc + curr.length, 0);
+    const completedTasks = taskList.flat().filter(t => t.done).length;
 
-      weeks[kw.toString()] = {
-        kw: `KW ${kw}`,
-        dateRange: dateRange,
-        subHeader: `Wochenübersicht ${year}/${year+1}`,
-        dates: days.map(d => d.formatted),
-        tasksCompleted: kw === 42 ? 4 : (kw === 41 ? 2 : (kw === 43 ? 1 : 0)),
-        tasksTotal: taskList.reduce((acc, curr) => acc + curr.length, 0) || 2,
-        examSubject: examSub,
-        examDay: examDayName,
-        examTopic: examTp,
-        tasks: taskList
-      };
-    });
-
-    return weeks;
+    weeksData[kw.toString()] = {
+      kw: `KW ${kw}`,
+      dateRange: dateRange,
+      subHeader: `Wochenübersicht 2026/2027`,
+      dates: days.map(d => d.formatted),
+      tasksCompleted: completedTasks,
+      tasksTotal: totalTasks,
+      examSubject: examSub,
+      examDay: examDayName,
+      examTopic: examTp,
+      tasks: taskList
+    };
   }
 
-  const weeksData = generateWeeksDataForYear(baseYear);
   let currentKwKey = "42";
-  const kwKeys = ["41", "42", "43", "44"];
+  const kwKeys = Array.from({length: 52}, (_, i) => (i + 1).toString());
 
   const trigger = document.getElementById("week-selector-trigger");
   const dropdown = document.getElementById("week-dropdown");
@@ -513,6 +324,19 @@
   const weeklyGrid = document.getElementById("weekly-grid");
   const signoffKw = document.getElementById("signoff-kw");
   const signBtn = document.getElementById("sign-btn");
+
+  // Populate Dropdown
+  let dropdownHtml = "";
+  kwKeys.forEach(kw => {
+    const d = weeksData[kw];
+    dropdownHtml += `
+      <button class="w-full text-left px-4 py-2 hover:bg-surface-container-high text-on-surface text-body-md flex items-center justify-between ${kw === '42' ? 'bg-surface-container' : ''}" data-kw="${kw}" data-range="${d.dateRange}">
+        <span>KW ${kw} ${kw === '42' ? '(Aktuell)' : ''}</span>
+        <span class="text-body-sm text-outline">${d.dateRange.split('–')[0]}</span>
+      </button>
+    `;
+  });
+  dropdown.innerHTML = dropdownHtml;
 
   trigger.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -570,7 +394,6 @@
     examDay.textContent = data.examDay;
     examTopic.textContent = data.examTopic;
 
-    // Update Dropdown active styling
     dropdown.querySelectorAll("button").forEach(b => {
       if (b.getAttribute("data-kw") === kw) {
         b.classList.add("bg-surface-container");
@@ -579,7 +402,6 @@
       }
     });
 
-    // Rebuild grid columns
     const dayNames = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"];
     let html = "";
     data.tasks.forEach((dayTasks, i) => {
@@ -665,7 +487,5 @@
     signBtn.classList.add("bg-emerald-600", "hover:bg-emerald-700");
   });
 
-  // Automatically initialize with current week 42 of 2026 or real system date if appropriate
   switchWeek("42");
-  attachCheckboxListeners();
 </script></body></html>
