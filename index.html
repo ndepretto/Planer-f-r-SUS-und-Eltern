@@ -173,7 +173,7 @@
 </div>
 <div class="flex items-center justify-between pt-2">
 <span class="text-body-sm text-on-surface-variant" id="exam-topic">Thema: Vektorrechnung &amp; Analytische Geometrie</span>
-<span class="text-label-md font-label-md text-primary cursor-pointer hover:underline">Lernplan öffnen</span>
+<span class="text-label-md font-label-md text-primary cursor-pointer hover:underline" id="open-studyplan-trigger">Lernplan öffnen</span>
 </div>
 </div>
 <!-- Parent Note Card -->
@@ -188,7 +188,7 @@
 <p class="text-body-sm text-on-surface-variant">Elternsprechtag Anstehend</p>
 </div>
 </div>
-<span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary text-label-sm">Termin wählen</span>
+<span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary text-label-sm cursor-pointer" id="open-booking-trigger">Termin wählen</span>
 </div>
 <div class="flex items-center justify-between pt-2">
 <span class="text-body-sm text-on-surface-variant">Online-Anmeldung bis Mittwoch freigeschaltet.</span>
@@ -384,11 +384,7 @@
     subHeaderWeek.textContent = data.subHeader;
     signoffKw.textContent = data.kw;
 
-    taskCounter.textContent = `${data.tasksCompleted}/${data.tasksTotal}`;
-    const pct = Math.round((data.tasksCompleted / data.tasksTotal) * 100) || 0;
-    progressBar.style.width = `${pct}%`;
-    const remaining = data.tasksTotal - data.tasksCompleted;
-    tasksRemainingText.textContent = `${remaining} Aufgaben verbleibend`;
+    updateStatsDisplay(data);
 
     examSubject.textContent = data.examSubject;
     examDay.textContent = data.examDay;
@@ -402,19 +398,33 @@
       }
     });
 
+    renderGrid(data);
+  }
+
+  function updateStatsDisplay(data) {
+    data.tasksCompleted = data.tasks.flat().filter(t => t.done).length;
+    data.tasksTotal = data.tasks.flat().length;
+    taskCounter.textContent = `${data.tasksCompleted}/${data.tasksTotal}`;
+    const pct = Math.round((data.tasksCompleted / data.tasksTotal) * 100) || 0;
+    progressBar.style.width = `${pct}%`;
+    const remaining = data.tasksTotal - data.tasksCompleted;
+    tasksRemainingText.textContent = `${remaining} Aufgaben verbleibend`;
+  }
+
+  function renderGrid(data) {
     const dayNames = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"];
     let html = "";
     data.tasks.forEach((dayTasks, i) => {
-      let isThursday = (i === 3);
+      let isThursday = (i === 3 && currentKwKey === "42");
       let borderClass = isThursday ? "border-2 border-primary/20" : "";
       let titleColor = isThursday ? "text-primary" : "text-on-surface";
-      let badge = isThursday ? `<span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-sm font-bold">!</span>` : `<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm text-on-surface-variant">${dayTasks.length}</span>`;
+      let badge = `<span class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-label-sm text-on-surface-variant">${dayTasks.length}</span>`;
 
       let tasksHtml = "";
       if (dayTasks.length === 0) {
         tasksHtml = `<div class="bg-surface rounded-lg p-space-md text-center text-body-sm text-outline">Keine Aufgaben</div>`;
       } else {
-        dayTasks.forEach(t => {
+        dayTasks.forEach((t, tIdx) => {
           let lineThrough = t.done ? "line-through text-outline" : "";
           let bgCheck = t.done ? "bg-primary text-on-primary" : "border-outline hover:border-primary";
           let checkIcon = t.done ? `<span class="material-symbols-outlined text-[14px]">check</span>` : "";
@@ -422,7 +432,7 @@
           let fontBold = t.isExam ? "font-bold" : "font-medium";
 
           tasksHtml += `
-            <div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all ${examBorder}">
+            <div class="bg-surface rounded-lg p-space-md shadow-sm hover:shadow-md transition-all ${examBorder}" data-day="${i}" data-index="${tIdx}">
               <div class="flex items-center justify-between mb-2">
                 <span class="px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-label-sm font-label-sm">${t.subject}</span>
                 <span class="w-5 h-5 rounded border-2 border-primary flex items-center justify-center cursor-pointer ${bgCheck} task-checkbox-dyn">
@@ -460,23 +470,19 @@
   }
 
   function attachCheckboxListeners() {
-    document.querySelectorAll(".task-checkbox-dyn, .task-checkbox").forEach(box => {
+    document.querySelectorAll(".task-checkbox-dyn").forEach(box => {
       box.addEventListener("click", (e) => {
         e.stopPropagation();
-        const parentCard = box.closest(".bg-surface");
-        const titleP = parentCard.querySelector("p.text-body-md");
-        const isDone = titleP.classList.contains("line-through");
-        if (isDone) {
-          titleP.classList.remove("line-through", "text-outline");
-          box.classList.remove("bg-primary", "text-on-primary");
-          box.classList.add("border-outline");
-          box.innerHTML = "";
-        } else {
-          titleP.classList.add("line-through", "text-outline");
-          box.classList.add("bg-primary", "text-on-primary");
-          box.classList.remove("border-outline");
-          box.innerHTML = `<span class="material-symbols-outlined text-[14px]">check</span>`;
-        }
+        const parentCard = box.closest("[data-day]");
+        const dayIdx = parseInt(parentCard.getAttribute("data-day"), 10);
+        const taskIdx = parseInt(parentCard.getAttribute("data-index"), 10);
+        
+        const data = weeksData[currentKwKey];
+        const taskObj = data.tasks[dayIdx][taskIdx];
+        taskObj.done = !taskObj.done;
+
+        updateStatsDisplay(data);
+        renderGrid(data);
       });
     });
   }
@@ -488,4 +494,109 @@
   });
 
   switchWeek("42");
-</script><div id="modals-root"><div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="booking-modal"><div class="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Elternsprechtag Termin wählen</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-booking"><span class="material-symbols-outlined">close</span></button></div><p class="text-body-sm text-on-surface-variant mb-4">Wählen Sie einen verfügbaren Zeitslot für den Elternsprechtag aus:</p><div class="space-y-2 mb-6"><div class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary cursor-pointer flex justify-between items-center slot-item"><span>Donnerstag, 15. Okt – 15:30 Uhr</span><span class="text-xs bg-secondary-fixed text-secondary px-2 py-1 rounded">Frei</span></div><div class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary cursor-pointer flex justify-between items-center slot-item"><span>Donnerstag, 15. Okt – 16:00 Uhr</span><span class="text-xs bg-secondary-fixed text-secondary px-2 py-1 rounded">Frei</span></div><div class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary cursor-pointer flex justify-between items-center slot-item"><span>Freitag, 16. Okt – 14:00 Uhr</span><span class="text-xs bg-secondary-fixed text-secondary px-2 py-1 rounded">Frei</span></div></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="confirm-booking">Termin verbindlich buchen</button></div></div><div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="studyplan-modal"><div class="bg-surface rounded-2xl max-w-xl w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Lernplan: Vektorrechnung</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-studyplan"><span class="material-symbols-outlined">close</span></button></div><div class="space-y-4 text-body-md text-on-surface mb-6"><div class="p-4 bg-surface-container-low rounded-xl"><h4 class="font-semibold mb-1">Tag 1: Grundlagen &amp; Vektoraddition</h4><p class="text-body-sm text-on-surface-variant">S. 38–40 lesen, Aufgaben 1-4 lösen.</p></div><div class="p-4 bg-surface-container-low rounded-xl"><h4 class="font-semibold mb-1">Tag 2: Skalarprodukt &amp; Winkel</h4><p class="text-body-sm text-on-surface-variant">Arbeitsblatt durchgehen und Übungsvideos ansehen.</p></div><div class="p-4 bg-surface-container-low rounded-xl"><h4 class="font-semibold mb-1">Tag 3: Probelauf &amp; Fragen</h4><p class="text-body-sm text-on-surface-variant">Alte Schulaufgaben durchrechnen.</p></div></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="close-studyplan-btn">Verstanden</button></div></div><div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="signature-modal"><div class="bg-surface rounded-2xl max-w-md w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Woche digital unterschreiben</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-signature"><span class="material-symbols-outlined">close</span></button></div><p class="text-body-sm text-on-surface-variant mb-4">Mit Bestätigung erklären Sie, dass Sie die Aufgaben und Termine zur Kenntnis genommen haben.</p><div class="mb-6"><label class="block text-xs font-semibold text-on-surface-variant mb-1">Name des Erziehungsberechtigten</label><input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="signer-name" type="text" value="Max Mustermann (Elternteil)"/></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="submit-signature">Jetzt signieren</button></div></div><div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="add-task-modal"><div class="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Neue Aufgabe hinzufügen</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-add-task"><span class="material-symbols-outlined">close</span></button></div><div class="space-y-4 mb-6"><div><label class="block text-xs font-semibold text-on-surface-variant mb-1">Fach</label><input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-subject" placeholder="z.B. Mathematik" type="text"/></div><div><label class="block text-xs font-semibold text-on-surface-variant mb-1">Beschreibung / Titel</label><input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-title" placeholder="z.B. S. 44 Nr. 2" type="text"/></div><div><label class="block text-xs font-semibold text-on-surface-variant mb-1">Wochentag</label><select class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-day"><option value="0">Montag</option><option value="1">Dienstag</option><option value="2">Mittwoch</option><option value="3">Donnerstag</option><option value="4">Freitag</option></select></div><div><label class="block text-xs font-semibold text-on-surface-variant mb-1">Zeit / Fälligkeit</label><input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-time" placeholder="z.B. Bis 08:00" type="text"/></div></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="submit-new-task">Aufgabe speichern</button></div></div></div></body></html>
+</script><div id="modals-root">
+<div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="booking-modal"><div class="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Elternsprechtag Termin wählen</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-booking"><span class="material-symbols-outlined">close</span></button></div><p class="text-body-sm text-on-surface-variant mb-4">Wählen Sie einen verfügbaren Zeitslot für den Elternsprechtag aus:</p><div class="space-y-2 mb-6"><div class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary cursor-pointer flex justify-between items-center slot-item"><span>Donnerstag, 15. Okt – 15:30 Uhr</span><span class="text-xs bg-secondary-fixed text-secondary px-2 py-1 rounded">Frei</span></div><div class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary cursor-pointer flex justify-between items-center slot-item"><span>Donnerstag, 15. Okt – 16:00 Uhr</span><span class="text-xs bg-secondary-fixed text-secondary px-2 py-1 rounded">Frei</span></div><div class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary cursor-pointer flex justify-between items-center slot-item"><span>Freitag, 16. Okt – 14:00 Uhr</span><span class="text-xs bg-secondary-fixed text-secondary px-2 py-1 rounded">Frei</span></div></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="confirm-booking">Termin verbindlich buchen</button></div></div>
+<div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="studyplan-modal"><div class="bg-surface rounded-2xl max-w-xl w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Lernplan: Vektorrechnung</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-studyplan"><span class="material-symbols-outlined">close</span></button></div><div class="space-y-4 text-body-md text-on-surface mb-6"><div class="p-4 bg-surface-container-low rounded-xl"><h4 class="font-semibold mb-1">Tag 1: Grundlagen &amp; Vektoraddition</h4><p class="text-body-sm text-on-surface-variant">S. 38–40 lesen, Aufgaben 1-4 lösen.</p></div><div class="p-4 bg-surface-container-low rounded-xl"><h4 class="font-semibold mb-1">Tag 2: Skalarprodukt &amp; Winkel</h4><p class="text-body-sm text-on-surface-variant">Arbeitsblatt durchgehen und Übungsvideos ansehen.</p></div><div class="p-4 bg-surface-container-low rounded-xl"><h4 class="font-semibold mb-1">Tag 3: Probelauf &amp; Fragen</h4><p class="text-body-sm text-on-surface-variant">Alte Schulaufgaben durchrechnen.</p></div></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="close-studyplan-btn">Verstanden</button></div></div>
+<div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="signature-modal"><div class="bg-surface rounded-2xl max-w-md w-full p-6 shadow-2xl relative"><div class="flex justify-between items-center mb-4"><h3 class="font-headline-md text-on-surface">Woche digital unterschreiben</h3><button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-signature"><span class="material-symbols-outlined">close</span></button></div><p class="text-body-sm text-on-surface-variant mb-4">Mit Bestätigung erklären Sie, dass Sie die Aufgaben und Termine zur Kenntnis genommen haben.</p><div class="mb-6"><label class="block text-xs font-semibold text-on-surface-variant mb-1">Name des Erziehungsberechtigten</label><input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="signer-name" type="text" value="Max Mustermann (Elternteil)"/></div><button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="submit-signature">Jetzt signieren</button></div></div>
+<div class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" id="add-task-modal">
+<div class="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-on-surface">Neue Aufgabe hinzufügen</h3>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center" id="close-add-task"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="space-y-4 mb-6">
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">Fach</label>
+<input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-subject" placeholder="z.B. Mathematik" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">Beschreibung / Titel</label>
+<input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-title" placeholder="z.B. S. 44 Nr. 2" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">Wochentag</label>
+<select class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-day">
+<option value="0">Montag</option>
+<option value="1">Dienstag</option>
+<option value="2">Mittwoch</option>
+<option value="3">Donnerstag</option>
+<option value="4">Freitag</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">Zeit / Fälligkeit</label>
+<input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-time" placeholder="z.B. Bis 08:00" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">Status</label>
+<input class="w-full px-3 py-2 border rounded-xl bg-surface-container-low outline-none" id="new-task-status" placeholder="z.B. Wichtig" type="text" value="Aufgabe"/>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-medium" id="submit-new-task">Aufgabe speichern</button>
+</div>
+</div>
+</div>
+<script>
+  // Modal toggle scripts for full robustness
+  const addTaskModal = document.getElementById("add-task-modal");
+  const openAddTaskBtn = document.getElementById("open-add-task-btn");
+  const closeAddTaskBtn = document.getElementById("close-add-task");
+  const submitNewTaskBtn = document.getElementById("submit-new-task");
+
+  openAddTaskBtn.addEventListener("click", () => {
+    addTaskModal.classList.remove("hidden");
+  });
+  closeAddTaskBtn.addEventListener("click", () => {
+    addTaskModal.classList.add("hidden");
+  });
+
+  submitNewTaskBtn.addEventListener("click", () => {
+    const subj = document.getElementById("new-task-subject").value.trim() || "Allgemein";
+    const title = document.getElementById("new-task-title").value.trim() || "Neue Aufgabe";
+    const dayIndex = parseInt(document.getElementById("new-task-day").value, 10);
+    const time = document.getElementById("new-task-time").value.trim() || "Demnächst";
+    const status = document.getElementById("new-task-status").value.trim() || "Aufgabe";
+
+    const currentData = weeksData[currentKwKey];
+    if (currentData && currentData.tasks[dayIndex]) {
+      currentData.tasks[dayIndex].push({
+        subject: subj,
+        title: title,
+        done: false,
+        time: time,
+        status: status
+      });
+      updateStatsDisplay(currentData);
+      renderGrid(currentData);
+    }
+
+    addTaskModal.classList.add("hidden");
+    // Clear inputs
+    document.getElementById("new-task-subject").value = "";
+    document.getElementById("new-task-title").value = "";
+    document.getElementById("new-task-time").value = "";
+  });
+
+  // Other modal triggers
+  const bookingModal = document.getElementById("booking-modal");
+  const openBookingTrigger = document.getElementById("open-booking-trigger");
+  const closeBooking = document.getElementById("close-booking");
+  if(openBookingTrigger && bookingModal) {
+    openBookingTrigger.addEventListener("click", () => bookingModal.classList.remove("hidden"));
+    closeBooking.addEventListener("click", () => bookingModal.classList.add("hidden"));
+    document.getElementById("confirm-booking").addEventListener("click", () => {
+      alert("Termin erfolgreich gebucht!");
+      bookingModal.classList.add("hidden");
+    });
+  }
+
+  const studyplanModal = document.getElementById("studyplan-modal");
+  const openStudyplanTrigger = document.getElementById("open-studyplan-trigger");
+  const closeStudyplan = document.getElementById("close-studyplan");
+  const closeStudyplanBtn = document.getElementById("close-studyplan-btn");
+  if(openStudyplanTrigger && studyplanModal) {
+    openStudyplanTrigger.addEventListener("click", () => studyplanModal.classList.remove("hidden"));
+    closeStudyplan.addEventListener("click", () => studyplanModal.classList.add("hidden"));
+    closeStudyplanBtn.addEventListener("click", () => studyplanModal.classList.add("hidden"));
+  }
+</script></body></html>
