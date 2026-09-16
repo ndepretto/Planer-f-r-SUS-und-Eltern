@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+<html lang="de"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/><script id="tailwind-config">
+  tailwind.config = {
     darkMode: "class",
     theme: {
       extend: {
         "colors": {
-          "secondary-fixed-dim": "#7bd0ff",
-          "on-tertiary": "#ffffff",
-          "tertiary": "#4c5851",
-          "on-surface-variant": "#434655",
-          "on-error": "#ffffff",
+          "on-secondary": "#ffffff",
           "surface-container-low": "#eff4ff",
           "on-primary-fixed": "#00174b",
-          "error-container": "#ffdad6",
-          "on-primary-container": "#eeefff",
-          "secondary-container": "#40c2fd",
-          "on-tertiary-container": "#e7f4eb",
-          "error": "#ba1a1a",
-          "background": "#f8f9ff",
-          "primary-container": "#2563eb",
-          "surface-tint": "#0053db",
-          "surface-variant": "#d3e4fe",
-          "surface-dim": "#cbdbf5",
-          "inverse-on-surface": "#eaf1ff",
-          "on-tertiary-fixed-variant": "#3e4943",
-          "on-primary": "#ffffff",
+          "tertiary-container": "#647069",
           "surface-container-highest": "#d3e4fe",
-          "primary-fixed": "#dbe1ff",
-          "inverse-surface": "#213145",
           "tertiary-fixed": "#d9e6dd",
+          "surface-variant": "#d3e4fe",
+          "on-primary-container": "#eeefff",
           "on-surface": "#0b1c30",
-          "outline": "#737686",
-          "surface-bright": "#f8f9ff",
-          "surface": "#f8f9ff",
-          "surface-container-high": "#dce9ff",
-          "primary-fixed-dim": "#b4c5ff",
-          "secondary-fixed": "#c4e7ff",
-          "on-secondary-fixed": "#001e2c",
+          "on-tertiary-fixed-variant": "#3e4943",
           "tertiary-fixed-dim": "#bdcac1",
-          "on-secondary-fixed-variant": "#004c69",
-          "on-primary-fixed-variant": "#003ea8",
-          "on-error-container": "#93000a",
-          "inverse-primary": "#b4c5ff",
           "on-tertiary-fixed": "#131e19",
-          "surface-container": "#e5eeff",
+          "surface-container-high": "#dce9ff",
+          "on-secondary-fixed-variant": "#004c69",
+          "on-surface-variant": "#434655",
           "secondary": "#00668a",
-          "outline-variant": "#c3c6d7",
-          "on-secondary": "#ffffff",
-          "on-secondary-container": "#004d6a",
-          "on-background": "#0b1c30",
-          "primary": "#004ac6",
+          "surface-container": "#e5eeff",
+          "primary-fixed-dim": "#b4c5ff",
+          "secondary-fixed-dim": "#7bd0ff",
+          "primary-fixed": "#dbe1ff",
+          "surface": "#f8f9ff",
           "surface-container-lowest": "#ffffff",
-          "tertiary-container": "#647069"
+          "background": "#f8f9ff",
+          "surface-dim": "#cbdbf5",
+          "inverse-primary": "#b4c5ff",
+          "error-container": "#ffdad6",
+          "primary": "#004ac6",
+          "surface-bright": "#f8f9ff",
+          "on-background": "#0b1c30",
+          "on-secondary-container": "#004d6a",
+          "secondary-fixed": "#c4e7ff",
+          "inverse-on-surface": "#eaf1ff",
+          "surface-tint": "#0053db",
+          "inverse-surface": "#213145",
+          "outline-variant": "#c3c6d7",
+          "on-error-container": "#93000a",
+          "on-tertiary-container": "#e7f4eb",
+          "on-primary": "#ffffff",
+          "on-secondary-fixed": "#001e2c",
+          "tertiary": "#4c5851",
+          "primary-container": "#2563eb",
+          "error": "#ba1a1a",
+          "outline": "#737686",
+          "on-tertiary": "#ffffff",
+          "on-error": "#ffffff",
+          "secondary-container": "#40c2fd",
+          "on-primary-fixed-variant": "#003ea8"
         },
         "borderRadius": {
           "DEFAULT": "0.25rem",
@@ -59,306 +60,172 @@
           "xl": "0.75rem",
           "full": "9999px"
         },
-        "spacing": {
-          "space-xl": "2.5rem",
-          "gutter": "1.5rem",
-          "space-md": "1rem",
-          "space-sm": "0.5rem",
-          "margin": "2rem",
-          "space-lg": "1.5rem",
-          "space-xs": "0.25rem"
-        },
         "fontFamily": {
-          "headline-sm": ["Inter"],
-          "headline-md": ["Inter"],
-          "label-sm": ["Inter"],
           "headline-lg": ["Inter"],
-          "body-lg": ["Inter"],
-          "label-md": ["Inter"],
-          "body-sm": ["Inter"],
-          "headline-lg-mobile": ["Inter"],
-          "body-md": ["Inter"]
-        },
-        "fontSize": {
-          "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
-          "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
-          "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
-          "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
-          "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-          "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
-          "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
-          "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
-          "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          "headline-md": ["Inter"],
+          "body-md": ["Inter"],
+          "label-md": ["Inter"]
         }
       }
     }
-  }</script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-space-xl pb-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="px-space-lg mb-space-lg flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-md">S</div><div><h1 class="font-headline-sm text-on-surface">Schüler &amp; Eltern</h1><p class="text-body-sm text-on-surface-variant">Gemeinsame Plattform</p></div></div><nav class="flex-1 px-space-md space-y-space-xs" data-active-classes="bg-primary text-on-primary font-semibold"><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-colors bg-primary text-on-primary font-semibold" data-path="schueler-ansicht" href="#"><span class="material-symbols-outlined">school</span>Schüler-Ansicht</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="eltern-dashboard" href="#"><span class="material-symbols-outlined">family_history</span>Eltern-Dashboard</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="wochenplanung" href="#"><span class="material-symbols-outlined">calendar_month</span>Wochenplanung</a></nav><div class="px-space-lg pt-space-md"><div class="p-space-md bg-surface-container rounded-xl flex items-center gap-space-md"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="overflow-hidden"><p class="text-label-md font-semibold text-on-surface truncate">Max Mustermann</p><p class="text-body-sm text-on-surface-variant">Aktiv</p></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-on-surface-variant">search</span><input class="bg-transparent text-body-md text-on-surface outline-none placeholder:text-outline w-64" placeholder="Suche nach Aufgaben, Fächern..." type="text"/></div><div class="flex items-center gap-space-md"><button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-16 bg-surface min-h-screen px-space-gutter py-space-gutter"><div class="flex flex-col w-full pb-16">
-<!-- Top Welcome & Quick Actions Bar -->
-<div class="bg-primary-fixed text-on-primary-fixed p-space-md rounded-2xl mb-space-lg flex items-center justify-between gap-space-md shadow-sm"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-primary text-[24px]">cloud_sync</span><div><h4 class="font-headline-sm text-on-primary-fixed">Fortschritt wird automatisch gespeichert</h4><p class="text-body-sm text-on-primary-fixed/80">Deine Hausaufgaben und Erledigt-Markierungen werden lokal auf diesem Gerät und in deinem Schülerkonto synchronisiert.</p></div></div><button class="px-space-md py-space-xs rounded-xl bg-primary text-on-primary text-label-sm font-semibold hover:bg-surface-tint transition-all" onclick="alert('Profil ist aktiv und synchronisiert!')">Details</button></div><div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg mb-space-xl">
-<div>
-<div class="flex items-center gap-space-sm mb-space-xs">
-<span class="px-space-sm py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-semibold">Schuljahr 26/27</span>
-<span class="text-body-sm text-on-surface-variant">Woche 14 • 2. Halbjahr</span>
-<select class="bg-surface-container border border-outline-variant rounded-lg px-space-sm py-0.5 text-on-surface text-label-sm outline-none focus:border-primary transition-colors ml-space-sm" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>26/27</option><option>27/28</option><option>28/29</option></select></div>
-<h2 class="font-headline-lg text-on-surface">Hallo, Max! 👋</h2>
-<p class="text-body-lg text-on-surface-variant">Du hast heute noch 3 offene Aufgaben vor dir. Du schaffst das!</p>
-</div>
-<div class="flex items-center gap-space-md">
-<button class="flex items-center gap-space-sm bg-primary text-on-primary px-space-lg py-space-md rounded-xl shadow-[0_4px_16px_rgba(37,99,235,0.24)] hover:bg-surface-tint transition-all transform hover:-translate-y-0.5" onclick="openAddTaskModal()">
-<span class="material-symbols-outlined">add</span>
-<span class="font-semibold text-label-md">Hausaufgabe erfassen</span>
-</button>
-</div>
-</div>
-<!-- Main Content Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
-<!-- Left Column: Weekly Overview & Tasks (8 Cols) -->
-<div class="lg:col-span-8 flex flex-col gap-space-lg">
-<!-- Weekday Selector Bar -->
-<div class="bg-surface-container-low rounded-2xl p-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
-<div class="flex items-center justify-between mb-space-md px-space-sm">
-<h3 class="font-headline-sm text-on-surface flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary">calendar_month</span>
-            Wochenübersicht
-          </h3>
-<span class="text-body-sm text-on-surface-variant">20. Mai - 24. Mai</span>
-</div>
-<div class="grid grid-cols-5 gap-space-sm">
-<button class="day-btn flex flex-col items-center justify-center p-space-md rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary transition-all group active" onclick="filterDay('Mo')">
-<span class="text-label-sm text-on-surface-variant group-hover:text-on-primary/80">Mo</span>
-<span class="font-headline-sm mt-space-xs">20</span>
-<span class="w-1.5 h-1.5 rounded-full bg-primary group-hover:bg-on-primary mt-space-sm"></span>
-</button>
-<button class="day-btn flex flex-col items-center justify-center p-space-md rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary transition-all group" onclick="filterDay('Di')">
-<span class="text-label-sm text-on-surface-variant group-hover:text-on-primary/80">Di</span>
-<span class="font-headline-sm mt-space-xs">21</span>
-<span class="w-1.5 h-1.5 rounded-full bg-secondary group-hover:bg-on-primary mt-space-sm"></span>
-</button>
-<button class="day-btn flex flex-col items-center justify-center p-space-md rounded-xl bg-primary text-on-primary transition-all group shadow-sm" onclick="filterDay('Mi')">
-<span class="text-label-sm text-on-primary/80">Mi</span>
-<span class="font-headline-sm mt-space-xs">22</span>
-<span class="w-1.5 h-1.5 rounded-full bg-on-primary mt-space-sm"></span>
-</button>
-<button class="day-btn flex flex-col items-center justify-center p-space-md rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary transition-all group" onclick="filterDay('Do')">
-<span class="text-label-sm text-on-surface-variant group-hover:text-on-primary/80">Do</span>
-<span class="font-headline-sm mt-space-xs">23</span>
-<span class="w-1.5 h-1.5 rounded-full bg-error group-hover:bg-on-primary mt-space-sm"></span>
-</button>
-<button class="day-btn flex flex-col items-center justify-center p-space-md rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary transition-all group" onclick="filterDay('Fr')">
-<span class="text-label-sm text-on-surface-variant group-hover:text-on-primary/80">Fr</span>
-<span class="font-headline-sm mt-space-xs">24</span>
-<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-space-sm"></span>
-</button>
-</div>
-</div>
-<!-- Tasks List Card -->
-<div class="bg-surface-container-low rounded-2xl p-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.02)] flex flex-col gap-space-md">
-<div class="flex items-center justify-between">
-<div>
-<h3 class="font-headline-md text-on-surface">Aufgaben für Mittwoch, 22. Mai</h3>
-<p class="text-body-sm text-on-surface-variant">3 von 4 Aufgaben erledigt</p>
-</div>
-<div class="flex items-center gap-space-sm">
-<span class="px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface text-label-sm">Alle Fächer</span>
-</div>
-</div>
-<div class="space-y-space-md mt-space-sm" id="task-list">
-<!-- Task 1 -->
-<div class="task-item bg-surface rounded-xl p-space-md flex items-center justify-between gap-space-md transition-all hover:shadow-md">
-<div class="flex items-center gap-space-md flex-1">
-<input class="w-6 h-6 rounded-lg accent-primary cursor-pointer" onchange="toggleTask(this)" type="checkbox"/>
-<div>
-<div class="flex items-center gap-space-sm mb-1">
-<span class="px-space-sm py-0.5 rounded-md bg-secondary-fixed text-on-secondary-fixed-variant text-label-sm font-semibold">Mathematik</span>
-<span class="text-body-sm text-on-surface-variant">S. 42 Nr. 3 a-c</span>
-</div>
-<h4 class="font-headline-sm text-on-surface">Quadratische Gleichungen lösen</h4>
-</div>
-</div>
-<div class="flex items-center gap-space-md">
-<span class="text-body-sm text-outline flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">schedule</span> Bis 14:00
-              </span>
-<button class="text-outline hover:text-error transition-colors">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-</div>
-<!-- Task 2 -->
-<div class="task-item bg-surface rounded-xl p-space-md flex items-center justify-between gap-space-md transition-all hover:shadow-md">
-<div class="flex items-center gap-space-md flex-1">
-<input class="w-6 h-6 rounded-lg accent-primary cursor-pointer" onchange="toggleTask(this)" type="checkbox"/>
-<div>
-<div class="flex items-center gap-space-sm mb-1">
-<span class="px-space-sm py-0.5 rounded-md bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm font-semibold">Biologie</span>
-<span class="text-body-sm text-on-surface-variant">Arbeitsblatt</span>
-</div>
-<h4 class="font-headline-sm text-on-surface">Aufbau der Pflanzenzelle beschriften</h4>
-</div>
-</div>
-<div class="flex items-center gap-space-md">
-<span class="text-body-sm text-outline flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">schedule</span> Bis morgen
-              </span>
-<button class="text-outline hover:text-error transition-colors">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-</div>
-<!-- Task 3 (Completed) -->
-<div class="task-item bg-surface rounded-xl p-space-md flex items-center justify-between gap-space-md transition-all opacity-75">
-<div class="flex items-center gap-space-md flex-1">
-<input checked="" class="w-6 h-6 rounded-lg accent-primary cursor-pointer" onchange="toggleTask(this)" type="checkbox"/>
-<div>
-<div class="flex items-center gap-space-sm mb-1">
-<span class="px-space-sm py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed text-label-sm font-semibold">Schuljahr 26/27</span>
-<span class="text-body-sm text-on-surface-variant">Vokabeln Unit 4</span>
-</div>
-<h4 class="font-headline-sm text-on-surface line-through text-outline">S. 112 lernen für Vokabeltest</h4>
-</div>
-</div>
-<div class="flex items-center gap-space-md">
-<span class="px-space-sm py-0.5 rounded-full bg-tertiary-container text-on-tertiary text-label-sm">Erledigt</span>
-<button class="text-outline hover:text-error transition-colors">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Progress & Quick Subject Filter (4 Cols) -->
-<div class="lg:col-span-4 flex flex-col gap-space-lg">
-<!-- Progress Widget -->
-<div class="bg-surface-container-low rounded-2xl p-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.02)] relative overflow-hidden">
-<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
-<h3 class="font-headline-sm text-on-surface mb-space-md">Wochenfortschritt</h3>
-<div class="flex items-center justify-between mb-space-sm">
-<span class="text-body-md text-on-surface-variant">12 von 15 Aufgaben</span>
-<span class="font-headline-sm text-primary">80%</span>
-</div>
-<!-- Thick Progress Bar -->
-<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden p-0.5 mb-space-lg">
-<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 80%"></div>
-</div>
-<div class="grid grid-cols-2 gap-space-md pt-space-md border-t border-surface-container">
-<div>
-<p class="text-body-sm text-on-surface-variant">Erledigt</p>
-<p class="font-headline-md text-on-surface">12</p>
-</div>
-<div>
-<p class="text-body-sm text-on-surface-variant">Offen</p>
-<p class="font-headline-md text-primary">3</p>
-</div>
-</div>
-</div>
-<!-- Subject Selection / Quick Filter -->
-<div class="bg-surface-container-low rounded-2xl p-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
-<h3 class="font-headline-sm text-on-surface mb-space-md">Fächerübersicht</h3>
-<div class="flex flex-wrap gap-space-sm">
-<button class="px-space-md py-space-sm rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary text-label-md font-medium transition-all shadow-xs flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-primary"></span> Mathematik
-          </button>
-<button class="px-space-md py-space-sm rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary text-label-md font-medium transition-all shadow-xs flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-secondary"></span> Physik
-          </button>
-<button class="px-space-md py-space-sm rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary text-label-md font-medium transition-all shadow-xs flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-tertiary"></span> Biologie
-          </button>
-<button class="px-space-md py-space-sm rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary text-label-md font-medium transition-all shadow-xs flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span> Englisch
-          </button>
-<button class="px-space-md py-space-sm rounded-xl bg-surface text-on-surface hover:bg-primary hover:text-on-primary text-label-md font-medium transition-all shadow-xs flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-outline"></span> Geschichte
-          </button>
-</div>
-</div>
-<!-- Motivational Banner Card -->
-<div class="bg-cover bg-center rounded-2xl p-space-lg text-on-primary relative overflow-hidden shadow-md flex flex-col justify-end min-h-[180px]" data-alt="A brightly lit modern student desk with organized notebooks, colorful sticky notes, a laptop, and a small potted plant under soft morning sunlight, creating an inspiring and productive study atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgXY5YQyy2i-HllQyfGr-3MklF_F1s21Pu2QpV8Zl-Qe_tbOnC2UrL4tShpbIWEizE4XpORe5gknntHy0rfYKDSPXOXRTNIVWXnF454UTLIEDr4P8FhnFkrv_qeBxDDhdcGMfKZmBuFfwMnbNRafGcL_N_83CmtBJxvxXYp5EoV3LTtz7VahSqz-AK1AuMRE3wiuB6MuE5iLkKGnXnAXD9RBslyNnuYbPmV2zCJF0zvS1fGyX1y1Wt')">
-<div class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/40 to-transparent"></div>
-<div class="relative z-10">
-<span class="px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-label-sm font-semibold inline-block mb-2">Tipp des Tages</span>
-<h4 class="font-headline-sm text-white mb-1">Pausen nicht vergessen!</h4>
-<p class="text-body-sm text-surface-variant">Nach 45 Minuten konzentriertem Lernen tut eine kurze Bewegungspause gut.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Add Task Modal (Hidden by default) -->
-<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 flex items-center justify-center p-space-md hidden" id="task-modal">
-<div class="bg-surface-container-lowest rounded-3xl p-space-xl w-full max-w-lg shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
-<div class="flex items-center justify-between mb-space-lg">
-<h3 class="font-headline-md text-on-surface">Neue Hausaufgabe erfassen</h3>
-<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high" onclick="closeAddTaskModal()">
-<span class="material-symbols-outlined text-[18px]">close</span>
-</button>
-</div>
-<form class="space-y-space-md" onsubmit="handleAddTask(event)">
-<div>
-<label class="block text-label-md font-medium text-on-surface mb-space-xs">Fach wählen</label>
-<select class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>26/27</option><option>27/28</option><option>28/29</option></select>
-</div>
-<div>
-<label class="block text-label-md font-medium text-on-surface mb-space-xs">Aufgabentitel / Details</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors placeholder:text-outline" placeholder="z.B. S. 42 Nr. 3 a-c" required="" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-space-md">
-<div>
-<label class="block text-label-md font-medium text-on-surface mb-space-xs">Fällig am</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" type="date" value="2024-05-22"/>
-</div>
-<div>
-<label class="block text-label-md font-medium text-on-surface mb-space-xs">Priorität</label>
-<select class="w-full bg-surface-container border border-outline-variant rounded-xl px-space-md py-space-sm text-on-surface outline-none focus:border-primary transition-colors" onchange="alert('Schuljahr gewechselt zu: ' + this.value);"><option>26/27</option><option>27/28</option><option>28/29</option></select>
-</div>
-</div>
-<div class="flex items-center justify-end gap-space-md pt-space-md">
-<button class="px-space-lg py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors font-medium" onclick="closeAddTaskModal()" type="button">Abbrechen</button>
-<button class="px-space-lg py-space-sm bg-primary text-on-primary rounded-xl font-medium shadow-md hover:bg-surface-tint transition-all" type="submit">Speichern</button>
-</div>
-</form>
-</div>
-</div>
-<script>
-    function openAddTaskModal() {
-      document.getElementById('task-modal').classList.remove('hidden');
-    }
-    
-    function closeAddTaskModal() {
-      document.getElementById('task-modal').classList.add('hidden');
-    }
+  }
+</script></head><body class="bg-background text-on-background font-body-md min-h-screen flex flex-col"><header class="bg-surface border-b border-outline-variant px-6 py-4 flex items-center justify-between sticky top-0 z-50"><div class="flex items-center gap-6"><h1 class="text-headline-md text-on-surface">Wochenplanung &amp; Aufgaben</h1><nav class="hidden md:flex items-center gap-1 bg-surface-container p-1 rounded-lg"><button class="px-4 py-2 rounded-md text-label-md bg-primary text-on-primary transition-all" id="tab-wochenplanung" onclick="switchTab('wochenplanung')">Wochenplanung</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-schueler" onclick="switchTab('schueler')">Schüler-Ansicht</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-eltern" onclick="switchTab('eltern')">Eltern-Dashboard</button></nav></div><div class="flex items-center gap-3"><button class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-label-md font-medium flex items-center gap-2 hover:opacity-90" onclick="goToToday()"><span class="material-symbols-outlined text-sm">today</span>Heute</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium flex items-center gap-2 shadow-sm" onclick="openTaskModal()"><span class="material-symbols-outlined text-sm">add</span>Aufgabe erstellen</button></div></header><main class="flex-1 p-6 max-w-7xl mx-auto w-full grid grid-cols-1 gap-6"><section class="space-y-6" id="view-wochenplanung"><div class="flex justify-between items-center bg-surface-container-low p-4 rounded-xl border border-outline-variant"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">calendar_month</span><h2 class="text-headline-sm text-on-surface" id="current-week-label">KW 12 (18.03.2024 - 24.03.2024)</h2></div><div class="flex gap-2"><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(-1)"><span class="material-symbols-outlined">chevron_left</span></button><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(1)"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="days-container"><!-- Dynamic days generated via script --></div></section><section class="hidden space-y-6" id="view-schueler"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Schüler-Ansicht &amp; Lernfortschritt</h2><span class="text-sm bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-medium">Offene Aufgaben: <span id="schueler-count">0</span></span></div><p class="text-on-surface-variant">Hier siehst du alle deine Aufgaben sortiert nach Fächern. Hake erledigte Aufgaben ab!</p><div class="space-y-3" id="schueler-tasks"></div></div></section><section class="hidden space-y-6" id="view-eltern"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Eltern-Dashboard &amp; Bestätigungen</h2><span class="text-sm bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-medium">Wochenstatus: Bestätigung ausstehend</span></div><p class="text-on-surface-variant">Überprüfen Sie die erledigten Aufgaben Ihres Kindes und bestätigen Sie die Wochenleistung per Unterschrift.</p><div class="space-y-4" id="eltern-signoffs"></div><div class="pt-4 border-t border-outline-variant flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="alert('Wochenübersicht als PDF gedruckt/exportiert.')">Wochenbericht exportieren</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="alert('Wochenbericht erfolgreich von den Eltern signiert!')">Woche digital signieren</button></div></div></section></main><!-- Modals --><div class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50" id="taskModal"><div class="bg-surface p-6 rounded-xl max-w-md w-full mx-4 space-y-4 border border-outline-variant shadow-xl"><h3 class="text-headline-sm">Neue Aufgabe erstellen</h3><input class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskTitle" placeholder="Titel der Aufgabe" type="text"/><textarea class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskDesc" placeholder="Beschreibung"></textarea><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskSubject"><option value="Mathematik">Mathematik</option><option value="Deutsch">Deutsch</option><option value="Englisch">Englisch</option><option value="Naturwissenschaften">Naturwissenschaften</option></select><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskPriority"><option value="Normal">Normal</option><option value="Wichtig">Wichtig</option><option value="Dringend">Dringend</option></select></div><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskDay"><option value="Montag">Montag</option><option value="Dienstag">Dienstag</option><option value="Mittwoch">Mittwoch</option><option value="Donnerstag">Donnerstag</option><option value="Freitag">Freitag</option></select></div><div class="flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant" onclick="closeTaskModal()">Abbrechen</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="saveTask()">Speichern</button></div></div></div><script>
+let tasks = [
+  { id: 1, title: "Mathematik S. 42 Nr. 3", desc: "Lineare Gleichungen lösen", subject: "Mathematik", priority: "Wichtig", day: "Montag", done: false },
+  { id: 2, title: "Vokabeln Unit 4", desc: "Englisch Vokabeln lernen und schreiben", subject: "Englisch", priority: "Normal", day: "Dienstag", done: true }
+];
 
-    function toggleTask(checkbox) {
-      const taskItem = checkbox.closest('.task-item');
-      const title = taskItem.querySelector('h4');
-      if (checkbox.checked) {
-        title.classList.add('line-through', 'text-outline');
-        taskItem.style.opacity = '0.75';
-      } else {
-        title.classList.remove('line-through', 'text-outline');
-        taskItem.style.opacity = '1';
-      }
-    }
+function switchTab(tab) {
+  document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+  document.querySelectorAll('nav button').forEach(b => {
+    b.classList.remove('bg-primary', 'text-on-primary');
+    b.classList.add('text-on-surface-variant');
+  });
+  document.getElementById('view-' + tab).classList.remove('hidden');
+  document.getElementById('tab-' + tab).classList.add('bg-primary', 'text-on-primary');
+  document.getElementById('tab-' + tab).classList.remove('text-on-surface-variant');
+  
+  if(tab === 'schueler') renderSchuelerView();
+  if(tab === 'eltern') renderElternView();
+}
 
-    function handleAddTask(e) {
-      e.preventDefault();
-      closeAddTaskModal();
-      // Simple feedback simulation
-    }
+function goToToday() {
+  renderCalendar();
+}
 
-    // Day filter interaction
-    const dayBtns = document.querySelectorAll('.day-btn');
-    dayBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        dayBtns.forEach(b => {
-          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
-          b.classList.add('bg-surface', 'text-on-surface');
-        });
-        btn.classList.remove('bg-surface', 'text-on-surface');
-        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
-      });
-    });
-  </script>
-</div></main></div></body></html>
+function openTaskModal() {
+  document.getElementById('taskModal').classList.remove('hidden');
+}
+
+function closeTaskModal() {
+  document.getElementById('taskModal').classList.add('hidden');
+}
+
+function saveTask() {
+  const title = document.getElementById('taskTitle').value;
+  const desc = document.getElementById('taskDesc').value;
+  const subject = document.getElementById('taskSubject').value;
+  const priority = document.getElementById('taskPriority').value;
+  const day = document.getElementById('taskDay').value;
+  
+  if(!title) {
+    alert('Bitte einen Titel eingeben.');
+    return;
+  }
+  
+  tasks.push({
+    id: Date.now(),
+    title,
+    desc,
+    subject,
+    priority,
+    day,
+    done: false
+  });
+  
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDesc').value = '';
+  closeTaskModal();
+  renderCalendar();
+}
+
+function toggleTask(id) {
+  const t = tasks.find(x => x.id === id);
+  if(t) t.done = !t.done;
+  renderCalendar();
+  renderSchuelerView();
+  renderElternView();
+}
+
+function renderCalendar() {
+  const container = document.getElementById('days-container');
+  const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
+  
+  container.innerHTML = days.map(d => {
+    const dayTasks = tasks.filter(t => t.day === d);
+    return `
+      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
+        <h3 class="font-semibold text-on-surface flex justify-between items-center">
+          <span>${d}</span>
+          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">${dayTasks.length}</span>
+        </h3>
+        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
+          ${dayTasks.length === 0 ? '<span class="text-outline italic">Keine Aufgaben</span>' : 
+            dayTasks.map(t => `
+              <div class="bg-surface p-2.5 rounded border border-outline-variant flex items-start gap-2 shadow-sm">
+                <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="mt-1 rounded text-primary focus:ring-primary"/>
+                <div class="flex-1 ${t.done ? 'line-through opacity-60' : ''}">
+                  <div class="font-medium text-on-surface">${t.title}</div>
+                  <div class="text-xs text-on-surface-variant">${t.subject} • <span class="text-primary">${t.priority}</span></div>
+                </div>
+              </div>
+            `).join('')}
+        </div>
+        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderSchuelerView() {
+  const container = document.getElementById('schueler-tasks');
+  const countEl = document.getElementById('schueler-count');
+  const openTasks = tasks.filter(t => !t.done);
+  countEl.textContent = openTasks.length;
+  
+  if(tasks.length === 0) {
+    container.innerHTML = '<p class="text-outline italic">Keine Aufgaben vorhanden.</p>';
+    return;
+  }
+  
+  container.innerHTML = tasks.map(t => `
+    <div class="p-4 rounded-xl border border-outline-variant bg-surface-container-low flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="h-5 w-5 rounded text-primary focus:ring-primary"/>
+        <div class="${t.done ? 'line-through opacity-60' : ''}">
+          <h4 class="font-semibold text-on-surface">${t.title}</h4>
+          <p class="text-xs text-on-surface-variant">${t.subject} (${t.day}) — ${t.desc || 'Keine Beschreibung'}</p>
+        </div>
+      </div>
+      <span class="text-xs px-2.5 py-1 rounded-full ${t.priority === 'Wichtig' ? 'bg-error-container text-on-error-container' : 'bg-surface-container text-on-surface-variant'}">${t.priority}</span>
+    </div>
+  `).join('');
+}
+
+function renderElternView() {
+  const container = document.getElementById('eltern-signoffs');
+  const completedCount = tasks.filter(t => t.done).length;
+  
+  container.innerHTML = `
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+        <div class="text-sm text-on-surface-variant">Gesamtaufgaben</div>
+        <div class="text-2xl font-bold text-on-surface">${tasks.length}</div>
+      </div>
+      <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+        <div class="text-sm text-on-surface-variant">Erledigt</div>
+        <div class="text-2xl font-bold text-primary">${completedCount}</div>
+      </div>
+      <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+        <div class="text-sm text-on-surface-variant">Offen</div>
+        <div class="text-2xl font-bold text-error">${tasks.length - completedCount}</div>
+      </div>
+    </div>
+    <h4 class="font-semibold text-on-surface mt-4 mb-2">Wochenprotokoll &amp; Fächer-Übersicht</h4>
+    <div class="space-y-2">
+      ${['Mathematik', 'Deutsch', 'Englisch', 'Naturwissenschaften'].map(sub => {
+        const subTasks = tasks.filter(t => t.subject === sub);
+        const subDone = subTasks.filter(t => t.done).length;
+        return `
+          <div class="p-3 rounded-lg border border-outline-variant bg-surface flex justify-between items-center text-sm">
+            <span class="font-medium text-on-surface">${sub}</span>
+            <span class="text-on-surface-variant">${subDone} von ${subTasks.length} erledigt</span>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+renderCalendar();
+</script></body></html>
