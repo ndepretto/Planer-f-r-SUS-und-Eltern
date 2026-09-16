@@ -10,10 +10,10 @@
         @layer base { 
             html, body { margin: 0; padding: 0; } 
             body { overscroll-behavior: none; } 
-            main > :first-child { margin-top: 0 !important; } 
-            main > :last-child { margin-bottom: 0 !important; } 
         } 
-        ::-webkit-scrollbar { display: none; }
+        /* Versteckt Scrollbalken für ein sauberes UI, erlaubt aber das Scrollen in den Boxen */
+        .custom-scroll::-webkit-scrollbar { display: none; }
+        .custom-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
     <!-- Tailwind CSS JIT -->
     <script src="https://tailwindcss.com"></script>
@@ -64,72 +64,78 @@
         }
     </script>
 </head>
-<body class="bg-background text-on-surface antialiased font-sans min-h-screen pb-12">
+<body class="bg-background text-on-surface antialiased font-sans min-h-screen flex flex-col">
 
-    <!-- Header Bereich -->
-    <header class="bg-gradient-to-r from-primary-container via-secondary-container to-secondary-fixed-dim text-white shadow-lg mb-8">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-bold tracking-tight flex items-center gap-3">
-                    <i data-lucide="graduation-cap" class="w-8 h-8"></i> Schüler-Schreibtisch & Planer
-                </h1>
-                <p class="text-on-primary-container/80 text-xs mt-1">Behalte deine Hausaufgaben und Termine im Griff</p>
+    <!-- Premium Header -->
+    <header class="bg-white border-b border-surface-container-high shadow-[0_1px_3px_rgba(0,0,0,0.05)] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-container to-secondary-container flex items-center justify-center text-white shadow-md">
+                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-inverse-surface">Schüler-Planer</h1>
+                    <p class="text-on-surface-variant text-xs font-medium">Strukturierte Wochenübersicht</p>
+                </div>
             </div>
             
-            <!-- Dynamische Übersicht / Statistik -->
-            <div class="bg-white/10 backdrop-blur-md px-5 py-3 rounded-xl flex items-center gap-6 text-sm border border-white/20">
-                <div class="text-center">
-                    <span class="block text-xs text-on-primary-container/70">Offen</span>
-                    <span id="stats-open" class="text-xl font-bold">0</span>
+            <!-- Dashboard Widget im Header -->
+            <div class="flex items-center gap-6 bg-surface-container-low border border-surface-variant/40 px-4 py-2 rounded-xl text-xs font-medium">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                    <span class="text-on-surface-variant"><strong id="stats-open" class="text-on-surface text-sm">0</strong> offen</span>
                 </div>
-                <div class="w-px h-8 bg-white/20"></div>
-                <div class="text-center">
-                    <span class="block text-xs text-on-primary-container/70">Erledigt</span>
-                    <span id="stats-done" class="text-xl font-bold text-secondary-fixed">0</span>
+                <div class="w-px h-4 bg-surface-variant"></div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                    <span class="text-on-surface-variant"><strong id="stats-done" class="text-on-surface text-sm">0</strong> erledigt</span>
                 </div>
-                <div class="w-px h-8 bg-white/20"></div>
-                <div>
-                    <span class="block text-xs text-on-primary-container/70 mb-1">Fortschritt</span>
-                    <div class="w-24 bg-white/20 h-2 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="bg-white h-full w-[0%] transition-all duration-300 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                <div class="w-px h-4 bg-surface-variant"></div>
+                <div class="flex items-center gap-3">
+                    <span class="text-on-surface-variant">Fortschritt:</span>
+                    <div class="w-20 bg-surface-variant h-2 rounded-full overflow-hidden inline-block relative">
+                        <div id="progress-bar" class="bg-primary-container h-full w-[0%] transition-all duration-500 rounded-full"></div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hauptinhalt -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Hauptbereich -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1 w-full">
         
-        <!-- Linke Spalte: Neue Aufgabe eintragen -->
-        <div class="space-y-6 lg:col-span-1">
-            <div class="bg-surface-container-low border border-surface-variant p-5 rounded-2xl shadow-sm sticky top-6">
-                <h3 class="text-md font-bold text-on-surface-variant mb-4 flex items-center gap-2 border-b border-surface-variant pb-2">
-                    <i data-lucide="plus-circle" class="w-5 h-5 text-primary-container"></i> Aufgabe eintragen
-                </h3>
+        <!-- Linke Spalte: Formular (4 von 12 Spalten) -->
+        <div class="lg:col-span-4 space-y-6">
+            <div class="bg-white border border-surface-container-high p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] sticky top-24">
+                <div class="flex items-center gap-2 mb-5 pb-3 border-b border-surface-container-low">
+                    <i data-lucide="edit-3" class="w-5 h-5 text-primary-container"></i>
+                    <h3 class="font-bold text-inverse-surface text-base">Neue Aufgabe erfassen</h3>
+                </div>
                 
                 <form id="task-form" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold text-on-surface-variant mb-1">Beschreibung</label>
-                        <input type="text" id="task-title" required class="w-full bg-white border border-outline/30 rounded-xl p-2.5 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container" placeholder="z.B. S. 45 Nr. 2a-c lesen">
+                        <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Was steht an?</label>
+                        <input type="text" id="task-title" required class="w-full bg-surface-container-low border border-surface-variant/40 rounded-xl p-3 text-sm text-on-surface placeholder-outline/50 focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-white transition-all" placeholder="z.B. Buch S. 12 Aufgaben 1-4">
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-on-surface-variant mb-1">Fach</label>
-                            <select id="task-subject" class="w-full bg-white border border-outline/30 rounded-xl p-2.5 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
-                                <option value="Mathe">Mathe</option>
-                                <option value="Deutsch">Deutsch</option>
-                                <option value="Englisch">Englisch</option>
-                                <option value="Französisch">Französisch</option>
-                                <option value="Biologie">Biologie</option>
-                                <option value="Geschichte">Geschichte</option>
-                                <option value="Anderes">Anderes</option>
+                            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Fach</label>
+                            <select id="task-subject" class="w-full bg-surface-container-low border border-surface-variant/40 rounded-xl p-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-white transition-all">
+                                <option value="Mathe">📐 Mathe</option>
+                                <option value="Deutsch">📝 Deutsch</option>
+                                <option value="Englisch">🇬🇧 Englisch</option>
+                                <option value="Französisch">🇫🇷 Französisch</option>
+                                <option value="Biologie">🌿 Biologie</option>
+                                <option value="Geschichte">⏳ Geschichte</option>
+                                <option value="Chemie">🧪 Chemie</option>
+                                <option value="Physik">⚡ Physik</option>
+                                <option value="Sonstiges">✏️ Sonstiges</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-on-surface-variant mb-1">Wochentag</label>
-                            <select id="task-day" class="w-full bg-white border border-outline/30 rounded-xl p-2.5 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
+                            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Wochentag</label>
+                            <select id="task-day" class="w-full bg-surface-container-low border border-surface-variant/40 rounded-xl p-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-white transition-all">
                                 <option value="monday">Montag</option>
                                 <option value="tuesday">Dienstag</option>
                                 <option value="wednesday">Mittwoch</option>
@@ -140,34 +146,11 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-on-surface-variant mb-1">Typ</label>
-                        <div class="grid grid-cols-2 gap-2">
-                            <label class="flex items-center gap-2 bg-white border border-outline/20 p-2 rounded-xl text-xs cursor-pointer">
-                                <input type="radio" name="task-type" value="homework" checked class="text-primary-container focus:ring-primary-container">
-                                Hausaufgabe
+                        <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">Kategorie</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center justify-center gap-2 bg-surface-container-low border border-surface-variant/40 p-3 rounded-xl text-xs font-medium cursor-pointer hover:bg-surface-container-high transition" id="label-homework">
+                                <input type="radio" name="task-type" value="homework" checked class="text-primary-container focus:ring-primary-container hidden">
+                                <i data-lucide="book-open" class="w-4 h-4 text-primary-container"></i> Hausaufgabe
                             </label>
-                            <label class="flex items-center gap-2 bg-white border border-outline/20 p-2 rounded-xl text-xs cursor-pointer">
-                                <input type="radio" name="task-type" value="exam" class="text-error focus:ring-error">
-                                <span class="text-error font-medium">Prüfung!</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full py-2.5 bg-primary-container text-white text-xs font-semibold rounded-xl hover:bg-surface-tint transition flex items-center justify-center gap-2 shadow-sm">
-                        <i data-lucide="save" class="w-4 h-4"></i> Im Planer speichern
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Rechte Spalte: Wochentage Grid -->
-        <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            
-            <!-- Montag -->
-            <div class="bg-white border border-surface-container-high rounded-2xl shadow-sm overflow-hidden flex flex-col min-h-[250px]">
-                <div class="bg-surface-container-low px-5 py-3 border-b border-surface-container-high flex justify-between items-center">
-                    <span class="font-bold text-on-surface flex items-center gap-2">Montag</span>
-                </div>
-                <div id="day-monday" class="p-4 flex-1 space-y-2 task-container">
-                    <!-- Aufgaben landen hier dynamisch -->
-                </div>
+                            <label class="flex items-center justify-center gap-2 bg-surface-container-low border border-surface-variant/40 p-3 rounded-xl text-xs font-medium cursor-pointer hover:bg-error-container/20 transition" id="label-exam">
+                                <input type="radio" name="task-type" value="exam" class="text-error focus:ring-error hidden">
