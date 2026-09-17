@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><script id="tailwind-config">
+<!DOCTYPE html>
+
+<html lang="de"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/><script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
     theme: {
@@ -67,82 +69,131 @@
       }
     }
   }
-</script></head><body class="bg-background text-on-background font-body-md min-h-screen flex flex-col"><header class="bg-surface border-b border-outline-variant px-6 py-4 flex items-center justify-between sticky top-0 z-50"><div class="flex items-center gap-6"><h1 class="text-headline-md text-on-surface">Wochenplanung &amp; Aufgaben</h1><nav class="hidden md:flex items-center gap-1 bg-surface-container p-1 rounded-lg"><button class="px-4 py-2 rounded-md text-label-md bg-primary text-on-primary transition-all" id="tab-wochenplanung" onclick="switchTab('wochenplanung')">Wochenplanung</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-schueler" onclick="switchTab('schueler')">Schüler-Ansicht</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-eltern" onclick="switchTab('eltern')">Eltern-Dashboard</button></nav></div><div class="flex items-center gap-3"><button class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-label-md font-medium flex items-center gap-2 hover:opacity-90" onclick="goToToday()"><span class="material-symbols-outlined text-sm">today</span>Heute</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium flex items-center gap-2 shadow-sm" onclick="openTaskModal()"><span class="material-symbols-outlined text-sm">add</span>Aufgabe erstellen</button></div></header><main class="flex-1 p-6 max-w-7xl mx-auto w-full grid grid-cols-1 gap-6"><section class="space-y-6" id="view-wochenplanung"><div class="flex flex-wrap justify-between items-center bg-surface-container-low p-4 rounded-xl border border-outline-variant gap-4 w-full"><div class="flex items-center gap-3 flex-1 min-w-[240px]"><span class="material-symbols-outlined text-primary">calendar_month</span><select class="bg-surface border border-outline-variant rounded-lg px-3 py-1.5 text-headline-sm text-on-surface w-full font-medium cursor-pointer focus:ring-primary" id="current-week-select" onchange="handleWeekSelect(this.value)"><option value="1">KW 1 (29.12.2025 – 02.01.2026)</option><option value="2">KW 2 (05.01.2026 – 09.01.2026)</option><option value="3">KW 3 (12.01.2026 – 16.01.2026)</option><option value="4">KW 4 (19.01.2026 – 23.01.2026)</option><option value="5">KW 5 (26.01.2026 – 30.01.2026)</option><option value="6">KW 6 (02.02.2026 – 06.02.2026)</option><option value="7">KW 7 (09.02.2026 – 13.02.2026)</option><option value="8">KW 8 (16.02.2026 – 20.02.2026)</option><option value="9">KW 9 (23.02.2026 – 27.02.2026)</option><option value="10">KW 10 (02.03.2026 – 06.03.2026)</option><option value="11">KW 11 (09.03.2026 – 13.03.2026)</option><option value="12">KW 12 (16.03.2026 – 20.03.2026)</option><option value="13">KW 13 (23.03.2026 – 27.03.2026)</option><option value="14">KW 14 (30.03.2026 – 03.04.2026)</option><option value="15">KW 15 (06.04.2026 – 10.04.2026)</option><option value="16">KW 16 (13.04.2026 – 17.04.2026)</option><option value="17">KW 17 (20.04.2026 – 24.04.2026)</option><option value="18">KW 18 (27.04.2026 – 01.05.2026)</option><option value="19">KW 19 (04.05.2026 – 08.05.2026)</option><option value="20">KW 20 (11.05.2026 – 15.05.2026)</option><option value="21" selected="selected">KW 21 (18.05.2026 – 22.05.2026)</option><option value="22">KW 22 (25.05.2026 – 29.05.2026)</option><option value="23">KW 23 (01.06.2026 – 05.06.2026)</option><option value="24">KW 24 (08.06.2026 – 12.06.2026)</option><option value="25">KW 25 (15.06.2026 – 19.06.2026)</option><option value="26">KW 26 (22.06.2026 – 26.06.2026)</option><option value="27">KW 27 (29.06.2026 – 03.07.2026)</option><option value="28">KW 28 (06.07.2026 – 10.07.2026)</option><option value="29">KW 29 (13.07.2026 – 17.07.2026)</option><option value="30">KW 30 (20.07.2026 – 24.07.2026)</option><option value="31">KW 31 (27.07.2026 – 31.07.2026)</option><option value="32">KW 32 (03.08.2026 – 07.08.2026)</option><option value="33">KW 33 (10.08.2026 – 14.08.2026)</option><option value="34">KW 34 (17.08.2026 – 21.08.2026)</option><option value="35">KW 35 (24.08.2026 – 28.08.2026)</option><option value="36">KW 36 (31.08.2026 – 04.09.2026)</option><option value="37">KW 37 (07.09.2026 – 11.09.2026)</option><option value="38">KW 38 (14.09.2026 – 18.09.2026)</option><option value="39">KW 39 (21.09.2026 – 25.09.2026)</option><option value="40">KW 40 (28.09.2026 – 02.10.2026)</option><option value="41">KW 41 (05.10.2026 – 09.10.2026)</option><option value="42">KW 42 (12.10.2026 – 16.10.2026)</option><option value="43">KW 43 (19.10.2026 – 23.10.2026)</option><option value="44">KW 44 (26.10.2026 – 30.10.2026)</option><option value="45">KW 45 (02.11.2026 – 06.11.2026)</option><option value="46">KW 46 (09.11.2026 – 13.11.2026)</option><option value="47">KW 47 (16.11.2026 – 20.11.2026)</option><option value="48">KW 48 (23.11.2026 – 27.11.2026)</option><option value="49">KW 49 (30.11.2026 – 04.12.2026)</option><option value="50">KW 50 (07.12.2026 – 11.12.2026)</option><option value="51">KW 51 (14.12.2026 – 18.12.2026)</option><option value="52">KW 52 (21.12.2026 – 25.12.2026)</option></select></div><div class="flex items-center gap-2 flex-wrap"><div class="flex gap-1"><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(-1)"><span class="material-symbols-outlined">chevron_left</span></button><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(1)"><span class="material-symbols-outlined">chevron_right</span></button></div></div></div><div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="days-container">
-      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
-        <h3 class="font-semibold text-on-surface flex justify-between items-center">
-          <span class="">Montag</span>
-          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">1</span>
-        </h3>
-        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
-          
-              <div class="bg-surface p-2.5 rounded border border-outline-variant flex items-start gap-2 shadow-sm">
-                <input type="checkbox" onchange="toggleTask(1)" class="mt-1 rounded text-primary focus:ring-primary">
-                <div class="flex-1 ">
-                  <div class="font-medium text-on-surface">Mathematik S. 42 Nr. 3</div>
-                  <div class="text-xs text-on-surface-variant">Mathematik • <span class="text-primary">Wichtig</span></div>
-                </div>
-              </div>
-            
-        </div>
-        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
-      </div>
-    
-      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
-        <h3 class="font-semibold text-on-surface flex justify-between items-center">
-          <span class="">Dienstag</span>
-          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">1</span>
-        </h3>
-        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
-          
-              <div class="bg-surface p-2.5 rounded border border-outline-variant flex items-start gap-2 shadow-sm">
-                <input type="checkbox" checked="" onchange="toggleTask(2)" class="mt-1 rounded text-primary focus:ring-primary">
-                <div class="flex-1 line-through opacity-60">
-                  <div class="font-medium text-on-surface">Vokabeln Unit 4</div>
-                  <div class="text-xs text-on-surface-variant">Englisch • <span class="text-primary">Normal</span></div>
-                </div>
-              </div>
-            
-        </div>
-        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
-      </div>
-    
-      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
-        <h3 class="font-semibold text-on-surface flex justify-between items-center">
-          <span class="">Mittwoch</span>
-          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">0</span>
-        </h3>
-        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
-          <span class="text-outline italic">Keine Aufgaben</span>
-        </div>
-        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
-      </div>
-    
-      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
-        <h3 class="font-semibold text-on-surface flex justify-between items-center">
-          <span class="">Donnerstag</span>
-          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">0</span>
-        </h3>
-        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
-          <span class="text-outline italic">Keine Aufgaben</span>
-        </div>
-        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
-      </div>
-    
-      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
-        <h3 class="font-semibold text-on-surface flex justify-between items-center">
-          <span class="">Freitag</span>
-          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">0</span>
-        </h3>
-        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
-          <span class="text-outline italic">Keine Aufgaben</span>
-        </div>
-        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
-      </div>
-    </div></section><section class="hidden space-y-6" id="view-schueler"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Schüler-Ansicht &amp; Lernfortschritt</h2><span class="text-sm bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-medium">Offene Aufgaben: <span id="schueler-count" class="">0</span></span></div><p class="text-on-surface-variant">Hier siehst du alle deine Aufgaben sortiert nach Fächern. Hake erledigte Aufgaben ab!</p><div class="space-y-3" id="schueler-tasks"></div></div></section><section class="hidden space-y-6" id="view-eltern"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Eltern-Dashboard &amp; Bestätigungen</h2><span class="text-sm bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-medium">Wochenstatus: Bestätigung ausstehend</span></div><p class="text-on-surface-variant">Überprüfen Sie die erledigten Aufgaben Ihres Kindes und bestätigen Sie die Wochenleistung per Unterschrift.</p><div class="space-y-4" id="eltern-signoffs"></div><div class="pt-4 border-t border-outline-variant flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="alert('Wochenübersicht als PDF gedruckt/exportiert.')">Wochenbericht exportieren</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="alert('Wochenbericht erfolgreich von den Eltern signiert!')">Woche digital signieren</button></div></div></section></main><!-- Modals --><div class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50" id="taskModal"><div class="bg-surface p-6 rounded-xl max-w-md w-full mx-4 space-y-4 border border-outline-variant shadow-xl"><h3 class="text-headline-sm">Neue Aufgabe erstellen</h3><input class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskTitle" placeholder="Titel der Aufgabe" type="text"><textarea class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskDesc" placeholder="Beschreibung"></textarea><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskSubject"><option value="Mathematik">Mathematik</option><option value="Deutsch">Deutsch</option><option value="Englisch">Englisch</option><option value="Naturwissenschaften">Naturwissenschaften</option></select><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskPriority"><option value="Normal">Normal</option><option value="Wichtig">Wichtig</option><option value="Dringend">Dringend</option></select></div><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskDay"><option value="Montag">Montag</option><option value="Dienstag">Dienstag</option><option value="Mittwoch">Mittwoch</option><option value="Donnerstag">Donnerstag</option><option value="Freitag">Freitag</option></select></div><div class="flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant" onclick="closeTaskModal()">Abbrechen</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="saveTask()">Speichern</button></div></div></div><script>
+</script></head><body class="bg-background text-on-background font-body-md min-h-screen flex flex-col"><header class="bg-surface border-b border-outline-variant px-6 py-4 flex items-center justify-between sticky top-0 z-50"><div class="flex items-center gap-6"><h1 class="text-headline-md text-on-surface font-semibold">Wochenplanung &amp; Aufgaben</h1><nav class="hidden md:flex items-center gap-1 bg-surface-container p-1 rounded-lg"><button class="px-4 py-2 rounded-md text-label-md bg-primary text-on-primary transition-all font-medium" id="tab-wochenplanung" onclick="switchTab('wochenplanung')">Wochenplanung</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-schueler" onclick="switchTab('schueler')">Schüler-Ansicht</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-eltern" onclick="switchTab('eltern')">Eltern-Dashboard</button></nav></div><div class="flex items-center gap-3"><button class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-label-md font-medium flex items-center gap-2 hover:opacity-90 transition-opacity" onclick="goToToday()"><span class="material-symbols-outlined text-sm">today</span>Heute</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium flex items-center gap-2 shadow-sm hover:bg-primary-container transition-colors" onclick="openTaskModal()"><span class="material-symbols-outlined text-sm">add</span>Aufgabe erstellen</button></div></header><main class="flex-1 p-6 max-w-7xl mx-auto w-full grid grid-cols-1 gap-6"><section class="space-y-4" id="view-wochenplanung"><!-- Digital Signature Status Banner / Controls --><div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="parent-signature-banner">
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-700 border border-emerald-300 transition-all shadow-sm" id="sig-icon-badge">
+<span class="material-symbols-outlined text-xl" id="sig-icon">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Digitale Elternunterschrift</span>
+<span class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-emerald-100 text-emerald-800 border border-emerald-200" id="sig-pill">Gültig unterschrieben</span>
+</div>
+<div class="text-sm font-medium text-on-surface flex items-center gap-2 mt-0.5" id="sig-details">
+<span>Elternunterschrift erfolgt: <strong class="font-semibold">Nicole De Pretto</strong>, 21.05.2026</span>
+<span class="text-xs text-on-surface-variant hidden md:inline">• Schüler kann erledigte Aufgaben unwiderruflich archivieren/löschen</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="text-xs text-on-surface-variant font-medium">Testmodus / Simulation:</span>
+<button class="px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-all bg-surface hover:bg-surface-container border-outline-variant shadow-sm" id="toggle-sig-btn" onclick="toggleSignatureStatus()" title="Zwischen unterschrieben und ausstehend wechseln">
+<span class="material-symbols-outlined text-base text-primary">swap_horiz</span>
+<span id="toggle-sig-text">Status wechseln</span>
+</button>
+</div>
+</div>
+</div><!-- Calendar Controls Header --><div class="flex flex-wrap justify-between items-center bg-surface-container-low p-4 rounded-xl border border-outline-variant gap-4 w-full"><div class="flex items-center gap-3 flex-1 min-w-[240px]"><span class="material-symbols-outlined text-primary">calendar_month</span><select class="bg-surface border border-outline-variant rounded-lg px-3 py-1.5 text-headline-sm text-on-surface w-full font-medium cursor-pointer focus:ring-primary" id="current-week-select" onchange="handleWeekSelect(this.value)"><option value="1">KW 1 (29.12.2025 – 02.01.2026)</option><option value="2">KW 2 (05.01.2026 – 09.01.2026)</option><option value="3">KW 3 (12.01.2026 – 16.01.2026)</option><option value="4">KW 4 (19.01.2026 – 23.01.2026)</option><option value="5">KW 5 (26.01.2026 – 30.01.2026)</option><option value="6">KW 6 (02.02.2026 – 06.02.2026)</option><option value="7">KW 7 (09.02.2026 – 13.02.2026)</option><option value="8">KW 8 (16.02.2026 – 20.02.2026)</option><option value="9">KW 9 (23.02.2026 – 27.02.2026)</option><option value="10">KW 10 (02.03.2026 – 06.03.2026)</option><option value="11">KW 11 (09.03.2026 – 13.03.2026)</option><option value="12">KW 12 (16.03.2026 – 20.03.2026)</option><option value="13">KW 13 (23.03.2026 – 27.03.2026)</option><option value="14">KW 14 (30.03.2026 – 03.04.2026)</option><option value="15">KW 15 (06.04.2026 – 10.04.2026)</option><option value="16">KW 16 (13.04.2026 – 17.04.2026)</option><option value="17">KW 17 (20.04.2026 – 24.04.2026)</option><option value="18">KW 18 (27.04.2026 – 01.05.2026)</option><option value="19">KW 19 (04.05.2026 – 08.05.2026)</option><option value="20">KW 20 (11.05.2026 – 15.05.2026)</option><option selected="selected" value="21">KW 21 (18.05.2026 – 22.05.2026)</option><option value="22">KW 22 (25.05.2026 – 29.05.2026)</option><option value="23">KW 23 (01.06.2026 – 05.06.2026)</option><option value="24">KW 24 (08.06.2026 – 12.06.2026)</option><option value="25">KW 25 (15.06.2026 – 19.06.2026)</option><option value="26">KW 26 (22.06.2026 – 26.06.2026)</option><option value="27">KW 27 (29.06.2026 – 03.07.2026)</option><option value="28">KW 28 (06.07.2026 – 10.07.2026)</option><option value="29">KW 29 (13.07.2026 – 17.07.2026)</option><option value="30">KW 30 (20.07.2026 – 24.07.2026)</option><option value="31">KW 31 (27.07.2026 – 31.07.2026)</option><option value="32">KW 32 (03.08.2026 – 07.08.2026)</option><option value="33">KW 33 (10.08.2026 – 14.08.2026)</option><option value="34">KW 34 (17.08.2026 – 21.08.2026)</option><option value="35">KW 35 (24.08.2026 – 28.08.2026)</option><option value="36">KW 36 (31.08.2026 – 04.09.2026)</option><option value="37">KW 37 (07.09.2026 – 11.09.2026)</option><option value="38">KW 38 (14.09.2026 – 18.09.2026)</option><option value="39">KW 39 (21.09.2026 – 25.09.2026)</option><option value="40">KW 40 (28.09.2026 – 02.10.2026)</option><option value="41">KW 41 (05.10.2026 – 09.10.2026)</option><option value="42">KW 42 (12.10.2026 – 16.10.2026)</option><option value="43">KW 43 (19.10.2026 – 23.10.2026)</option><option value="44">KW 44 (26.10.2026 – 30.10.2026)</option><option value="45">KW 45 (02.11.2026 – 06.11.2026)</option><option value="46">KW 46 (09.11.2026 – 13.11.2026)</option><option value="47">KW 47 (16.11.2026 – 20.11.2026)</option><option value="48">KW 48 (23.11.2026 – 27.11.2026)</option><option value="49">KW 49 (30.11.2026 – 04.12.2026)</option><option value="50">KW 50 (07.12.2026 – 11.12.2026)</option><option value="51">KW 51 (14.12.2026 – 18.12.2026)</option><option value="52">KW 52 (21.12.2026 – 25.12.2026)</option></select></div><div class="flex items-center gap-2 flex-wrap"><div class="flex gap-1"><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(-1)"><span class="material-symbols-outlined">chevron_left</span></button><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(1)"><span class="material-symbols-outlined">chevron_right</span></button></div></div></div><div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="days-container"></div></section><section class="hidden space-y-6" id="view-schueler"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Schüler-Ansicht &amp; Lernfortschritt</h2><span class="text-sm bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-medium">Offene Aufgaben: <span class="" id="schueler-count">0</span></span></div><p class="text-on-surface-variant">Hier siehst du alle deine Aufgaben sortiert nach Fächern. Hake erledigte Aufgaben ab. Nach der Elternunterschrift können erledigte Aufgaben gelöscht werden!</p><div class="space-y-3" id="schueler-tasks"></div></div></section><section class="hidden space-y-6" id="view-eltern"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Eltern-Dashboard &amp; Bestätigungen</h2><span class="text-sm bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-medium" id="eltern-status-pill">Wochenstatus: Unterschrieben von Nicole De Pretto</span></div><p class="text-on-surface-variant">Überprüfen Sie die erledigten Aufgaben Ihres Kindes und bestätigen Sie die Wochenleistung per digitaler Signatur.</p><div class="space-y-4" id="eltern-signoffs"></div><div class="pt-4 border-t border-outline-variant flex justify-end gap-3 flex-wrap"><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container text-label-md" onclick="alert('Wochenübersicht als PDF gedruckt/exportiert.')">Wochenbericht exportieren</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium" id="btn-eltern-action" onclick="toggleParentSignatureFromDashboard()">Wochenbericht digital signieren</button></div></div></section></main><!-- Modals --><div class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50" id="taskModal"><div class="bg-surface p-6 rounded-xl max-w-md w-full mx-4 space-y-4 border border-outline-variant shadow-xl"><h3 class="text-headline-sm">Neue Aufgabe erstellen</h3><input class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskTitle" placeholder="Titel der Aufgabe" type="text"/><textarea class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskDesc" placeholder="Beschreibung"></textarea><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskSubject"><option value="Mathematik">Mathematik</option><option value="Deutsch">Deutsch</option><option value="Englisch">Englisch</option><option value="Naturwissenschaften">Naturwissenschaften</option></select><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskPriority"><option value="Normal">Normal</option><option value="Wichtig">Wichtig</option><option value="Dringend">Dringend</option></select></div><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskDay"><option value="Montag">Montag</option><option value="Dienstag">Dienstag</option><option value="Mittwoch">Mittwoch</option><option value="Donnerstag">Donnerstag</option><option value="Freitag">Freitag</option></select></div><div class="flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant" onclick="closeTaskModal()">Abbrechen</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="saveTask()">Speichern</button></div></div></div><!-- Feedback Toast Notification --><div class="fixed bottom-6 right-6 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-lg shadow-xl text-sm font-medium transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none z-50 flex items-center gap-2.5" id="toast"><span class="material-symbols-outlined text-primary-container text-lg" id="toast-icon">info</span><span id="toast-message">Aufgabe gelöscht</span></div><script>
+// State
+let isParentSigned = true; // standardmäßig simuliert: Unterschrift geleistet
+let parentSignatureData = {
+  signer: "Nicole De Pretto",
+  date: "21.05.2026"
+};
+
 let tasks = [
   { id: 1, title: "Mathematik S. 42 Nr. 3", desc: "Lineare Gleichungen lösen", subject: "Mathematik", priority: "Wichtig", day: "Montag", done: false },
   { id: 2, title: "Vokabeln Unit 4", desc: "Englisch Vokabeln lernen und schreiben", subject: "Englisch", priority: "Normal", day: "Dienstag", done: true }
 ];
+
+function showToast(msg, icon = 'check_circle') {
+  const toast = document.getElementById('toast');
+  const msgEl = document.getElementById('toast-message');
+  const iconEl = document.getElementById('toast-icon');
+  msgEl.textContent = msg;
+  iconEl.textContent = icon;
+  toast.classList.remove('translate-y-20', 'opacity-0');
+  setTimeout(() => {
+    toast.classList.add('translate-y-20', 'opacity-0');
+  }, 3200);
+}
+
+function updateSignatureBanner() {
+  const iconBadge = document.getElementById('sig-icon-badge');
+  const sigIcon = document.getElementById('sig-icon');
+  const sigPill = document.getElementById('sig-pill');
+  const sigDetails = document.getElementById('sig-details');
+  const toggleBtnText = document.getElementById('toggle-sig-text');
+  const elternPill = document.getElementById('eltern-status-pill');
+  const btnEltern = document.getElementById('btn-eltern-action');
+
+  if (isParentSigned) {
+    iconBadge.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-700 border border-emerald-300 transition-all shadow-sm';
+    sigIcon.textContent = 'verified_user';
+    sigPill.className = 'text-xs px-2.5 py-0.5 rounded-full font-medium bg-emerald-100 text-emerald-800 border border-emerald-200';
+    sigPill.textContent = 'Gültig unterschrieben';
+    sigDetails.innerHTML = `<span>Elternunterschrift erfolgt: <strong class="font-semibold">${parentSignatureData.signer}</strong>, ${parentSignatureData.date}</span><span class="text-xs text-on-surface-variant hidden md:inline">• Schüler kann erledigte Aufgaben unwiderruflich archivieren/löschen</span>`;
+    toggleBtnText.textContent = 'Unterschrift widerrufen (Simulation)';
+    
+    if (elternPill) {
+      elternPill.className = 'text-sm bg-emerald-100 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full font-medium';
+      elternPill.textContent = `Wochenstatus: Unterschrieben von ${parentSignatureData.signer} (${parentSignatureData.date})`;
+    }
+    if (btnEltern) {
+      btnEltern.textContent = 'Unterschrift zurücknehmen';
+      btnEltern.className = 'px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container text-on-surface text-label-md font-medium';
+    }
+  } else {
+    iconBadge.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-amber-100 text-amber-800 border border-amber-300 transition-all shadow-sm';
+    sigIcon.textContent = 'pending_actions';
+    sigPill.className = 'text-xs px-2.5 py-0.5 rounded-full font-medium bg-amber-100 text-amber-900 border border-amber-200';
+    sigPill.textContent = 'Unterschrift ausstehend';
+    sigDetails.innerHTML = `<span class="text-on-surface-variant">Noch keine Elternunterschrift für KW ${window.currentWeekNum || 21} vorhanden.</span><span class="text-xs text-amber-800 font-medium hidden md:inline">• Löschen für Schüler gesperrt</span>`;
+    toggleBtnText.textContent = 'Elternunterschrift leisten (Simulation)';
+
+    if (elternPill) {
+      elternPill.className = 'text-sm bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-medium';
+      elternPill.textContent = 'Wochenstatus: Bestätigung ausstehend';
+    }
+    if (btnEltern) {
+      btnEltern.textContent = 'Woche digital signieren';
+      btnEltern.className = 'px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium shadow-sm';
+    }
+  }
+}
+
+function toggleSignatureStatus() {
+  isParentSigned = !isParentSigned;
+  updateSignatureBanner();
+  renderCalendar();
+  renderSchuelerView();
+  renderElternView();
+  if (isParentSigned) {
+    showToast('Elternunterschrift erteilt! Schüler kann erledigte Aufgaben jetzt löschen.', 'verified');
+  } else {
+    showToast('Elternunterschrift zurückgesetzt. Löschfunktion für Aufgaben gesperrt.', 'lock');
+  }
+}
+
+function toggleParentSignatureFromDashboard() {
+  toggleSignatureStatus();
+}
+
+function deleteTask(id) {
+  if (!isParentSigned) {
+    showToast('Aufgabe kann erst nach digitaler Elternunterschrift gelöscht werden!', 'lock');
+    return;
+  }
+  const task = tasks.find(t => t.id === id);
+  const taskName = task ? task.title : 'Aufgabe';
+  
+  tasks = tasks.filter(t => t.id !== id);
+  renderCalendar();
+  renderSchuelerView();
+  renderElternView();
+  showToast(`"${taskName}" erfolgreich gelöscht`, 'delete');
+}
 
 function switchTab(tab) {
   document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
@@ -156,6 +207,7 @@ function switchTab(tab) {
   
   if(tab === 'schueler') renderSchuelerView();
   if(tab === 'eltern') renderElternView();
+  if(tab === 'wochenplanung') renderCalendar();
 }
 
 function goToToday() {
@@ -196,6 +248,8 @@ function saveTask() {
   document.getElementById('taskDesc').value = '';
   closeTaskModal();
   renderCalendar();
+  renderSchuelerView();
+  showToast(`Aufgabe "${title}" hinzugefügt`, 'add_task');
 }
 
 function toggleTask(id) {
@@ -208,29 +262,57 @@ function toggleTask(id) {
 
 function renderCalendar() {
   const container = document.getElementById('days-container');
+  if(!container) return;
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   
   container.innerHTML = days.map(d => {
     const dayTasks = tasks.filter(t => t.day === d);
     return `
-      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3">
+      <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col gap-3 shadow-sm">
         <h3 class="font-semibold text-on-surface flex justify-between items-center">
           <span>${d}</span>
-          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant">${dayTasks.length}</span>
+          <span class="text-xs bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant font-medium">${dayTasks.length}</span>
         </h3>
-        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2">
-          ${dayTasks.length === 0 ? '<span class="text-outline italic">Keine Aufgaben</span>' : 
-            dayTasks.map(t => `
-              <div class="bg-surface p-2.5 rounded border border-outline-variant flex items-start gap-2 shadow-sm">
-                <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="mt-1 rounded text-primary focus:ring-primary"/>
-                <div class="flex-1 ${t.done ? 'line-through opacity-60' : ''}">
-                  <div class="font-medium text-on-surface">${t.title}</div>
-                  <div class="text-xs text-on-surface-variant">${t.subject} • <span class="text-primary">${t.priority}</span></div>
+        <div class="flex-1 bg-surface-container-low p-3 rounded-lg text-sm text-on-surface-variant min-h-[150px] space-y-2.5">
+          ${dayTasks.length === 0 ? '<span class="text-outline italic block py-4 text-center">Keine Aufgaben</span>' : 
+            dayTasks.map(t => {
+              // Delete button state logic
+              let deleteBtnHtml = '';
+              if (isParentSigned) {
+                // Parents signed -> delete button is enabled & active
+                deleteBtnHtml = `
+                  <button onclick="deleteTask(${t.id})" class="p-1 rounded text-outline hover:text-error hover:bg-error-container/40 transition-colors flex-shrink-0" title="Aufgabe löschen (Eltern haben signiert)">
+                    <span class="material-symbols-outlined text-base">delete</span>
+                  </button>
+                `;
+              } else {
+                // Parents NOT signed -> disabled with clear tooltip
+                deleteBtnHtml = `
+                  <button onclick="showToast('Erst nach Elternunterschrift löschbar!', 'lock')" class="p-1 rounded text-outline/40 hover:text-outline cursor-not-allowed flex-shrink-0" title="Erst nach Elternunterschrift löschbar">
+                    <span class="material-symbols-outlined text-base">lock</span>
+                  </button>
+                `;
+              }
+
+              return `
+                <div class="bg-surface p-2.5 rounded-lg border border-outline-variant flex items-start gap-2 shadow-sm transition-all hover:border-primary/40 group">
+                  <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="mt-0.5 rounded text-primary focus:ring-primary h-4 w-4 cursor-pointer"/>
+                  <div class="flex-1 min-w-0 ${t.done ? 'line-through opacity-60' : ''}">
+                    <div class="font-medium text-on-surface text-sm break-words leading-tight">${t.title}</div>
+                    <div class="text-xs text-on-surface-variant mt-0.5 flex items-center gap-1.5 flex-wrap">
+                      <span>${t.subject}</span>
+                      <span>•</span>
+                      <span class="${t.priority === 'Wichtig' ? 'text-primary font-medium' : t.priority === 'Dringend' ? 'text-error font-medium' : 'text-on-surface-variant'}">${t.priority}</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    ${deleteBtnHtml}
+                  </div>
                 </div>
-              </div>
-            `).join('')}
+              `;
+            }).join('')}
         </div>
-        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left">+ Aufgabe hinzufügen</button>
+        <button onclick="openTaskModal()" class="text-xs text-primary font-medium hover:underline text-left flex items-center gap-1 py-1">+ Aufgabe hinzufügen</button>
       </div>
     `;
   }).join('');
@@ -238,31 +320,55 @@ function renderCalendar() {
 
 function renderSchuelerView() {
   const container = document.getElementById('schueler-tasks');
+  if(!container) return;
   const countEl = document.getElementById('schueler-count');
   const openTasks = tasks.filter(t => !t.done);
-  countEl.textContent = openTasks.length;
+  if(countEl) countEl.textContent = openTasks.length;
   
   if(tasks.length === 0) {
     container.innerHTML = '<p class="text-outline italic">Keine Aufgaben vorhanden.</p>';
     return;
   }
   
-  container.innerHTML = tasks.map(t => `
-    <div class="p-4 rounded-xl border border-outline-variant bg-surface-container-low flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="h-5 w-5 rounded text-primary focus:ring-primary"/>
-        <div class="${t.done ? 'line-through opacity-60' : ''}">
-          <h4 class="font-semibold text-on-surface">${t.title}</h4>
-          <p class="text-xs text-on-surface-variant">${t.subject} (${t.day}) — ${t.desc || 'Keine Beschreibung'}</p>
+  container.innerHTML = tasks.map(t => {
+    let deleteBtnHtml = '';
+    if (isParentSigned) {
+      deleteBtnHtml = `
+        <button onclick="deleteTask(${t.id})" class="px-3 py-1.5 rounded-lg bg-error-container/30 text-error hover:bg-error hover:text-on-error transition-all text-xs font-medium flex items-center gap-1" title="Aufgabe löschen">
+          <span class="material-symbols-outlined text-sm">delete</span>
+          <span>Löschen</span>
+        </button>
+      `;
+    } else {
+      deleteBtnHtml = `
+        <button onclick="showToast('Erst nach Elternunterschrift löschbar!', 'lock')" class="px-3 py-1.5 rounded-lg border border-outline-variant/60 text-outline/60 text-xs font-medium flex items-center gap-1 cursor-not-allowed bg-surface" title="Erst nach Elternunterschrift löschbar">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          <span>Signatur fehlt</span>
+        </button>
+      `;
+    }
+
+    return `
+      <div class="p-4 rounded-xl border border-outline-variant bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+        <div class="flex items-start sm:items-center gap-3">
+          <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="h-5 w-5 rounded text-primary focus:ring-primary mt-0.5 sm:mt-0 cursor-pointer"/>
+          <div class="${t.done ? 'line-through opacity-60' : ''}">
+            <h4 class="font-semibold text-on-surface">${t.title}</h4>
+            <p class="text-xs text-on-surface-variant">${t.subject} (${t.day}) — ${t.desc || 'Keine Beschreibung'}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 self-end sm:self-center">
+          <span class="text-xs px-2.5 py-1 rounded-full ${t.priority === 'Wichtig' ? 'bg-primary-fixed text-on-primary-fixed' : t.priority === 'Dringend' ? 'bg-error-container text-on-error-container' : 'bg-surface-container text-on-surface-variant'}">${t.priority}</span>
+          ${deleteBtnHtml}
         </div>
       </div>
-      <span class="text-xs px-2.5 py-1 rounded-full ${t.priority === 'Wichtig' ? 'bg-error-container text-on-error-container' : 'bg-surface-container text-on-surface-variant'}">${t.priority}</span>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function renderElternView() {
   const container = document.getElementById('eltern-signoffs');
+  if(!container) return;
   const completedCount = tasks.filter(t => t.done).length;
   
   container.innerHTML = `
@@ -280,6 +386,27 @@ function renderElternView() {
         <div class="text-2xl font-bold text-error">${tasks.length - completedCount}</div>
       </div>
     </div>
+    
+    <div class="p-4 rounded-xl border border-outline-variant bg-surface mb-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h4 class="font-semibold text-on-surface">Digitale Unterschrift für KW ${window.currentWeekNum || 21}</h4>
+          <p class="text-xs text-on-surface-variant">Mit Ihrer Unterschrift bestätigen Sie die Sichtung aller Aufgaben und erlauben Ihrem Kind das Entfernen abgearbeiteter Aufgaben.</p>
+        </div>
+        <div class="text-right">
+          ${isParentSigned ? `
+            <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">
+              <span class="material-symbols-outlined text-sm">verified</span> Signiert von Nicole De Pretto
+            </span>
+          ` : `
+            <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800">
+              <span class="material-symbols-outlined text-sm">hourglass_empty</span> Ausstehend
+            </span>
+          `}
+        </div>
+      </div>
+    </div>
+
     <h4 class="font-semibold text-on-surface mt-4 mb-2">Wochenprotokoll &amp; Fächer-Übersicht</h4>
     <div class="space-y-2">
       ${['Mathematik', 'Deutsch', 'Englisch', 'Naturwissenschaften'].map(sub => {
@@ -296,18 +423,15 @@ function renderElternView() {
   `;
 }
 
+// Initial initialization
+updateSignatureBanner();
 renderCalendar();
-</script>
-
-
-
-
-
-<script>
+</script><script>
 window.currentWeekNum = 21;
 window.handleWeekSelect = function(val) {
   window.currentWeekNum = parseInt(val, 10);
   renderCalendar();
+  updateSignatureBanner();
 };
 window.changeWeek = function(delta) {
   let next = window.currentWeekNum + delta;
@@ -319,6 +443,7 @@ window.changeWeek = function(delta) {
     select.value = String(next);
   }
   renderCalendar();
+  updateSignatureBanner();
 };
 const origGoToToday = window.goToToday;
 window.goToToday = function() {
@@ -332,5 +457,6 @@ window.goToToday = function() {
   } else {
     renderCalendar();
   }
+  updateSignatureBanner();
 };
 </script></body></html>
