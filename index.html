@@ -124,7 +124,7 @@ function getSubjectBadge(subject) {
 let isParentSigned = localStorage.getItem('isParentSigned') !== null ? JSON.parse(localStorage.getItem('isParentSigned')) : true;
 let parentSignatureData = localStorage.getItem('parentSignatureData') ? JSON.parse(localStorage.getItem('parentSignatureData')) : {
   signer: "Nicole De Pretto",
-  date: "21.05.2026"
+  date: new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
 };
 let tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [
   { id: 1, title: "Mathematik S. 42 Nr. 3", desc: "Lineare Gleichungen lösen", subject: "Mathematik", priority: "Wichtig", day: "Montag", done: false },
@@ -196,6 +196,9 @@ function updateSignatureBanner() {
 }
 function toggleSignatureStatus() {
   isParentSigned = !isParentSigned;
+  if (isParentSigned) {
+    parentSignatureData.date = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
   saveState();
   updateSignatureBanner();
   renderCalendar();
