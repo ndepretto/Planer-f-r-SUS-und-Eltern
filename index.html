@@ -69,7 +69,7 @@
       }
     }
   }
-</script></head><body class="bg-background text-on-background font-body-md min-h-screen flex flex-col"><header class="bg-surface border-b border-outline-variant px-6 py-4 flex items-center justify-between sticky top-0 z-50"><div class="flex items-center gap-6"><h1 class="text-headline-md text-on-surface font-semibold">Wochenplanung &amp; Aufgaben</h1><nav class="hidden md:flex items-center gap-1 bg-surface-container p-1 rounded-lg"><button class="px-4 py-2 rounded-md text-label-md bg-primary text-on-primary transition-all font-medium" id="tab-wochenplanung" onclick="switchTab('wochenplanung')">Wochenplanung</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-schueler" onclick="switchTab('schueler')">Schüler-Ansicht</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-eltern" onclick="switchTab('eltern')">Eltern-Dashboard</button></nav></div><div class="flex items-center gap-3"><button class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-label-md font-medium flex items-center gap-2 hover:opacity-90 transition-opacity" onclick="window.currentWeekNum=40; saveState(); document.getElementById('current-week-select').value='40'; switchTab('wochenplanung'); renderCalendar(); updateSignatureBanner(); showToast('Zu heute gesprungen (KW 40)', 'today');"><span class="material-symbols-outlined text-sm">today</span>Heute</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium flex items-center gap-2 shadow-sm hover:bg-primary-container transition-colors" onclick="openTaskModal()"><span class="material-symbols-outlined text-sm">add</span>Aufgabe erstellen</button></div></header><main class="flex-1 p-6 max-w-7xl mx-auto w-full grid grid-cols-1 gap-6"><section class="space-y-4" id="view-wochenplanung"><!-- Digital Signature Status Banner / Controls --><div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="parent-signature-banner">
+</script></head><body class="bg-background text-on-background font-body-md min-h-screen flex flex-col"><header class="bg-surface border-b border-outline-variant px-6 py-4 flex items-center justify-between sticky top-0 z-50"><div class="flex items-center gap-6"><h1 class="text-headline-md text-on-surface font-semibold">Wochenplanung &amp; Aufgaben</h1><nav class="hidden md:flex items-center gap-1 bg-surface-container p-1 rounded-lg"><button class="px-4 py-2 rounded-md text-label-md bg-primary text-on-primary transition-all font-medium" id="tab-wochenplanung" onclick="switchTab('wochenplanung')">Wochenplanung</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-schueler" onclick="switchTab('schueler')">Schüler-Ansicht</button><button class="px-4 py-2 rounded-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-eltern" onclick="switchTab('eltern')">Eltern-Dashboard</button></nav></div><div class="flex items-center gap-3"><button class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-label-md font-medium flex items-center gap-2 hover:opacity-90 transition-opacity" onclick="window.currentWeekNum=40; loadWeekData(); document.getElementById('current-week-select').value='40'; switchTab('wochenplanung'); renderCalendar(); updateSignatureBanner(); showToast('Zu heute gesprungen (KW 40)', 'today');"><span class="material-symbols-outlined text-sm">today</span>Heute</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary text-label-md font-medium flex items-center gap-2 shadow-sm hover:bg-primary-container transition-colors" onclick="openTaskModal()"><span class="material-symbols-outlined text-sm">add</span>Aufgabe erstellen</button></div></header><main class="flex-1 p-6 max-w-7xl mx-auto w-full grid grid-cols-1 gap-6"><section class="space-y-4" id="view-wochenplanung"><!-- Digital Signature Status Banner / Controls --><div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all" id="parent-signature-banner">
 <div class="flex items-center gap-3.5">
 <div class="w-10 h-10 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-700 border border-emerald-300 transition-all shadow-sm" id="sig-icon-badge">
 <span class="material-symbols-outlined text-xl" id="sig-icon">verified_user</span>
@@ -93,7 +93,7 @@
 </div>
 </div><!-- Calendar Controls Header --><div class="flex flex-wrap justify-between items-center bg-surface-container-low p-4 rounded-xl border border-outline-variant gap-4 w-full"><div class="flex items-center gap-3 flex-1 min-w-[240px]"><span class="material-symbols-outlined text-primary">calendar_month</span><select class="bg-surface border border-outline-variant rounded-lg px-3 py-1.5 text-headline-sm text-on-surface w-full font-medium cursor-pointer focus:ring-primary" id="current-week-select" onchange="handleWeekSelect(this.value)"><option value="1">KW 1 (29.12.2025 – 02.01.2026)</option><option value="2">KW 2 (05.01.2026 – 09.01.2026)</option><option value="3">KW 3 (12.01.2026 – 16.01.2026)</option><option value="4">KW 4 (19.01.2026 – 23.01.2026)</option><option value="5">KW 5 (26.01.2026 – 30.01.2026)</option><option value="6">KW 6 (02.02.2026 – 06.02.2026)</option><option value="7">KW 7 (09.02.2026 – 13.02.2026)</option><option value="8">KW 8 (16.02.2026 – 20.02.2026)</option><option value="9">KW 9 (23.02.2026 – 27.02.2026)</option><option value="10">KW 10 (02.03.2026 – 06.03.2026)</option><option value="11">KW 11 (09.03.2026 – 13.03.2026)</option><option value="12">KW 12 (16.03.2026 – 20.03.2026)</option><option value="13">KW 13 (23.03.2026 – 27.03.2026)</option><option value="14">KW 14 (30.03.2026 – 03.04.2026)</option><option value="15">KW 15 (06.04.2026 – 10.04.2026)</option><option value="16">KW 16 (13.04.2026 – 17.04.2026)</option><option value="17">KW 17 (20.04.2026 – 24.04.2026)</option><option value="18">KW 18 (27.04.2026 – 01.05.2026)</option><option value="19">KW 19 (04.05.2026 – 08.05.2026)</option><option value="20">KW 20 (11.05.2026 – 15.05.2026)</option><option value="21">KW 21 (18.05.2026 – 22.05.2026)</option><option value="22">KW 22 (25.05.2026 – 29.05.2026)</option><option value="23">KW 23 (01.06.2026 – 05.06.2026)</option><option value="24">KW 24 (08.06.2026 – 12.06.2026)</option><option value="25">KW 25 (15.06.2026 – 19.06.2026)</option><option value="26">KW 26 (22.06.2026 – 26.06.2026)</option><option value="27">KW 27 (29.06.2026 – 03.07.2026)</option><option value="28">KW 28 (06.07.2026 – 10.07.2026)</option><option value="29">KW 29 (13.07.2026 – 17.07.2026)</option><option value="30">KW 30 (20.07.2026 – 24.07.2026)</option><option value="31">KW 31 (27.07.2026 – 31.07.2026)</option><option value="32">KW 32 (03.08.2026 – 07.08.2026)</option><option value="33">KW 33 (10.08.2026 – 14.08.2026)</option><option value="34">KW 34 (17.08.2026 – 21.08.2026)</option><option value="35">KW 35 (24.08.2026 – 28.08.2026)</option><option value="36">KW 36 (31.08.2026 – 04.09.2026)</option><option value="37">KW 37 (07.09.2026 – 11.09.2026)</option><option value="38">KW 38 (14.09.2026 – 18.09.2026)</option><option value="39">KW 39 (21.09.2026 – 25.09.2026)</option><option selected="selected" value="40">KW 40 (28.09.2026 – 02.10.2026)</option><option value="41">KW 41 (05.10.2026 – 09.10.2026)</option><option value="42">KW 42 (12.10.2026 – 16.10.2026)</option><option value="43">KW 43 (19.10.2026 – 23.10.2026)</option><option value="44">KW 44 (26.10.2026 – 30.10.2026)</option><option value="45">KW 45 (02.11.2026 – 06.11.2026)</option><option value="46">KW 46 (09.11.2026 – 13.11.2026)</option><option value="47">KW 47 (16.11.2026 – 20.11.2026)</option><option value="48">KW 48 (23.11.2026 – 27.11.2026)</option><option value="49">KW 49 (30.11.2026 – 04.12.2026)</option><option value="50">KW 50 (07.12.2026 – 11.12.2026)</option><option value="51">KW 51 (14.12.2026 – 18.12.2026)</option><option value="52">KW 52 (21.12.2026 – 25.12.2026)</option></select></div><div class="flex items-center gap-2 flex-wrap"><div class="flex gap-1"><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(-1)"><span class="material-symbols-outlined">chevron_left</span></button><button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container" onclick="changeWeek(1)"><span class="material-symbols-outlined">chevron_right</span></button></div></div></div><div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="days-container">
 <!-- Will be dynamically populated -->
-</div></section><section class="hidden space-y-6" id="view-schueler"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Schüler-Ansicht &amp; Lernfortschritt</h2><span class="text-sm bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-medium">Offene Aufgaben: <span class="" id="schueler-count">0</span></span></div><p class="text-on-surface-variant">Hier siehst du alle deine Aufgaben sortiert nach Fächern. Hake erledigte Aufgaben ab. Nach der Elternunterschrift können erledigte Aufgaben gelöscht werden!</p><div class="space-y-3" id="schueler-tasks"></div></div></section><section class="hidden space-y-6" id="view-eltern"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Eltern-Dashboard &amp; Bestätigungen</h2><span class="text-sm bg-emerald-100 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full font-medium" id="eltern-status-pill">Wochenstatus: Unterschrieben von Nicole De Pretto (21.05.2026)</span></div><p class="text-on-surface-variant">Überprüfen Sie die erledigten Aufgaben Ihres Kindes und bestätigen Sie die Wochenleistung per digitaler Signatur.</p><div class="space-y-4" id="eltern-signoffs"></div><div class="pt-4 border-t border-outline-variant flex justify-end gap-3 flex-wrap"><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container text-label-md" onclick="window.print()">Wochenbericht exportieren</button><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container text-on-surface text-label-md font-medium" id="btn-eltern-action" onclick="window.print()">Unterschrift zurücknehmen</button></div></div></section></main><!-- Modals --><div class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50" id="taskModal"><div class="bg-surface p-6 rounded-xl max-w-md w-full mx-4 space-y-4 border border-outline-variant shadow-xl"><h3 class="text-headline-sm">Neue Aufgabe erstellen</h3><input class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskTitle" placeholder="Titel der Aufgabe" type="text"/><textarea class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskDesc" placeholder="Beschreibung"></textarea><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskSubject"><option value="Mathematik">Mathematik</option><option value="Deutsch">Deutsch</option><option value="Französisch">Französisch</option><option value="Englisch">Englisch</option><option value="RKE">RKE (Religion, Kultur, Ethik)</option><option value="NT">NT (Natur und Technik)</option><option value="RZG">RZG (Räume, Zeiten, Gesellschaften)</option><option value="Diverses">Diverses</option></select><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskPriority"><option value="Normal">Normal</option><option value="Wichtig">Wichtig</option><option value="Dringend">Dringend</option></select></div><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm col-span-2" id="taskDay"><option value="Montag">Montag</option><option value="Dienstag">Dienstag</option><option value="Mittwoch">Mittwoch</option><option value="Donnerstag">Donnerstag</option><option value="Freitag">Freitag</option></select></div><div class="flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant" onclick="window.print()">Abbrechen</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="saveTask()">Speichern</button></div></div></div><!-- Feedback Toast Notification --><div class="fixed bottom-6 right-6 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-lg shadow-xl text-sm font-medium transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none z-50 flex items-center gap-2.5" id="toast"><span class="material-symbols-outlined text-primary-container text-lg" id="toast-icon">info</span><span class="" id="toast-message">Aufgabe gelöscht</span></div><script>
+</div></section><section class="hidden space-y-6" id="view-schueler"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Schüler-Ansicht &amp; Lernfortschritt</h2><span class="text-sm bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-medium">Offene Aufgaben: <span class="" id="schueler-count">0</span></span></div><p class="text-on-surface-variant">Hier siehst du alle deine Aufgaben sortiert nach Fächern. Hake erledigte Aufgaben ab. Nach der Elternunterschrift können erledigte Aufgaben gelöscht werden!</p><div class="space-y-3" id="schueler-tasks"></div></div></section><section class="hidden space-y-6" id="view-eltern"><div class="bg-surface p-6 rounded-xl border border-outline-variant space-y-4"><div class="flex justify-between items-center"><h2 class="text-headline-md">Eltern-Dashboard &amp; Bestätigungen</h2><span class="text-sm bg-emerald-100 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full font-medium" id="eltern-status-pill">Wochenstatus: Unterschrieben von Nicole De Pretto (21.05.2026)</span></div><p class="text-on-surface-variant">Überprüfen Sie die erledigten Aufgaben Ihres Kindes und bestätigen Sie die Wochenleistung per digitaler Signatur.</p><div class="space-y-4" id="eltern-signoffs"></div><div class="pt-4 border-t border-outline-variant flex justify-end gap-3 flex-wrap"><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container text-label-md" onclick="window.print()">Wochenbericht exportieren</button><button class="px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container text-on-surface text-label-md font-medium" id="btn-eltern-action" onclick="window.print()">Unterschrift zurücknehmen</button></div></div></section></main><!-- Modals --><div class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50" id="taskModal"><div class="bg-surface p-6 rounded-xl max-w-md w-full mx-4 space-y-4 border border-outline-variant shadow-xl"><h3 class="text-headline-sm">Neue Aufgabe erstellen</h3><input class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskTitle" placeholder="Titel der Aufgabe" type="text"/><textarea class="w-full p-3 rounded-lg border border-outline-variant bg-background" id="taskDesc" placeholder="Beschreibung"></textarea><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskSubject"><option value="Mathematik">Mathematik</option><option value="Deutsch">Deutsch</option><option value="Französisch">Französisch</option><option value="Englisch">Englisch</option><option value="RKE">RKE (Religion, Kultur, Ethik)</option><option value="NT">NT (Natur und Technik)</option><option value="RZG">RZG (Räume, Zeiten, Gesellschaften)</option><option value="Diverses">Diverses</option></select><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm" id="taskPriority"><option value="Normal">Normal</option><option value="Wichtig">Wichtig</option><option value="Dringend">Dringend</option></select></div><div class="grid grid-cols-2 gap-3"><select class="w-full p-3 rounded-lg border border-outline-variant bg-background text-sm col-span-2" id="taskDay"><option value="Montag">Montag</option><option value="Dienstag">Dienstag</option><option value="Mittwoch">Mittwoch</option><option value="Donnerstag">Donnerstag</option><option value="Freitag">Freitag</option></select></div><div class="flex justify-end gap-3"><button class="px-4 py-2 rounded-lg border border-outline-variant" onclick="closeTaskModal()">Abbrechen</button><button class="px-4 py-2 rounded-lg bg-primary text-on-primary" onclick="saveTask()">Speichern</button></div></div></div><!-- Feedback Toast Notification --><div class="fixed bottom-6 right-6 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-lg shadow-xl text-sm font-medium transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none z-50 flex items-center gap-2.5" id="toast"><span class="material-symbols-outlined text-primary-container text-lg" id="toast-icon">info</span><span class="" id="toast-message">Aufgabe gelöscht</span></div><script>
 // Master Subject List & Badges
 const SUBJECT_CONFIG = {
   "Mathematik": { label: "Mathematik", badge: "bg-blue-100 text-blue-800 border-blue-200" },
@@ -120,27 +120,65 @@ function getSubjectBadge(subject) {
   return `<span class="text-[11px] font-medium px-2 py-0.5 rounded border inline-block ${conf.badge}">${conf.label}</span>`;
 }
 
-// State variables with localStorage persistence
-let isParentSigned = localStorage.getItem('isParentSigned') !== null ? JSON.parse(localStorage.getItem('isParentSigned')) : true;
-let parentSignatureData = localStorage.getItem('parentSignatureData') ? JSON.parse(localStorage.getItem('parentSignatureData')) : {
+// State variables per week
+window.currentWeekNum = localStorage.getItem('currentWeekNum') ? parseInt(localStorage.getItem('currentWeekNum'), 10) : 40;
+
+let isParentSigned = false;
+let parentSignatureData = {
   signer: "Nicole De Pretto",
   date: new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
 };
-let tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [
-  { id: 1, title: "Mathematik S. 42 Nr. 3", desc: "Lineare Gleichungen lösen", subject: "Mathematik", priority: "Wichtig", day: "Montag", done: false },
-  { id: 2, title: "Vocabulaire Unité 3", desc: "Vokabeln lernen und Sätze bilden", subject: "Französisch", priority: "Normal", day: "Dienstag", done: true },
-  { id: 3, title: "RZG Kartenanalyse Europa", desc: "Topographie und Klimazonen eintragen", subject: "RZG", priority: "Normal", day: "Mittwoch", done: false },
-  { id: 4, title: "NT Mikroskopier-Protokoll", desc: "Pflanzenzellen zeichnen und beschriften", subject: "NT", priority: "Dringend", day: "Donnerstag", done: true },
-  { id: 5, title: "Deutsch Aufsatz Entwurf", desc: "Erörterung: Vor- und Nachteile von Social Media", subject: "Deutsch", priority: "Wichtig", day: "Freitag", done: false }
-];
-window.currentWeekNum = localStorage.getItem('currentWeekNum') ? parseInt(localStorage.getItem('currentWeekNum'), 10) : 40;
+let tasks = [];
+
+function loadWeekData() {
+  const weekKey = 'week_' + window.currentWeekNum;
+  const savedSigned = localStorage.getItem(weekKey + '_isParentSigned');
+  const savedSigData = localStorage.getItem(weekKey + '_parentSignatureData');
+  const savedTasks = localStorage.getItem(weekKey + '_tasks');
+
+  // Default tasks only for KW 40 if never saved before, otherwise empty for new weeks
+  if (savedSigned !== null) {
+    isParentSigned = JSON.parse(savedSigned);
+  } else {
+    isParentSigned = (window.currentWeekNum === 40);
+  }
+
+  if (savedSigData !== null) {
+    parentSignatureData = JSON.parse(savedSigData);
+  } else {
+    parentSignatureData = {
+      signer: "Nicole De Pretto",
+      date: new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    };
+  }
+
+  if (savedTasks !== null) {
+    tasks = JSON.parse(savedTasks);
+  } else {
+    if (window.currentWeekNum === 40) {
+      tasks = [
+        { id: 1, title: "Mathematik S. 42 Nr. 3", desc: "Lineare Gleichungen lösen", subject: "Mathematik", priority: "Wichtig", day: "Montag", done: false },
+        { id: 2, title: "Vocabulaire Unité 3", desc: "Vokabeln lernen und Sätze bilden", subject: "Französisch", priority: "Normal", day: "Dienstag", done: true },
+        { id: 3, title: "RZG Kartenanalyse Europa", desc: "Topographie und Klimazonen eintragen", subject: "RZG", priority: "Normal", day: "Mittwoch", done: false },
+        { id: 4, title: "NT Mikroskopier-Protokoll", desc: "Pflanzenzellen zeichnen und beschriften", subject: "NT", priority: "Dringend", day: "Donnerstag", done: true },
+        { id: 5, title: "Deutsch Aufsatz Entwurf", desc: "Erörterung: Vor- und Nachteile von Social Media", subject: "Deutsch", priority: "Wichtig", day: "Freitag", done: false }
+      ];
+    } else {
+      tasks = [];
+    }
+  }
+}
 
 function saveState() {
-  localStorage.setItem('isParentSigned', JSON.stringify(isParentSigned));
-  localStorage.setItem('parentSignatureData', JSON.stringify(parentSignatureData));
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  const weekKey = 'week_' + window.currentWeekNum;
+  localStorage.setItem(weekKey + '_isParentSigned', JSON.stringify(isParentSigned));
+  localStorage.setItem(weekKey + '_parentSignatureData', JSON.stringify(parentSignatureData));
+  localStorage.setItem(weekKey + '_tasks', JSON.stringify(tasks));
   localStorage.setItem('currentWeekNum', JSON.stringify(window.currentWeekNum));
 }
+
+// Initial load
+loadWeekData();
 
 function showToast(msg, icon = 'check_circle') {
   const toast = document.getElementById('toast');
@@ -468,15 +506,19 @@ if (selectEl) {
 </script><script>
 window.handleWeekSelect = function(val) {
   window.currentWeekNum = parseInt(val, 10);
+  loadWeekData();
   saveState();
   renderCalendar();
   updateSignatureBanner();
+  renderSchuelerView();
+  renderElternView();
 };
 window.changeWeek = function(delta) {
   let next = window.currentWeekNum + delta;
   if (next < 1) next = 52;
   if (next > 52) next = 1;
   window.currentWeekNum = next;
+  loadWeekData();
   saveState();
   const select = document.getElementById('current-week-select');
   if (select) {
@@ -484,10 +526,13 @@ window.changeWeek = function(delta) {
   }
   renderCalendar();
   updateSignatureBanner();
+  renderSchuelerView();
+  renderElternView();
 };
 const origGoToToday = window.goToToday;
 window.goToToday = function() {
   window.currentWeekNum = 40;
+  loadWeekData();
   saveState();
   const select = document.getElementById('current-week-select');
   if (select) {
@@ -499,6 +544,8 @@ window.goToToday = function() {
     renderCalendar();
   }
   updateSignatureBanner();
+  renderSchuelerView();
+  renderElternView();
 };
 </script><nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant px-4 py-2 flex items-center justify-around z-50 shadow-lg"><button class="flex flex-col items-center gap-0.5 text-xs font-medium text-primary py-1 px-3 rounded-lg" id="bottom-tab-wochenplanung" onclick="switchTab('wochenplanung')"><span class="material-symbols-outlined text-xl">calendar_view_week</span><span class="">Wochenplanung</span></button><button class="flex flex-col items-center gap-0.5 text-xs font-medium text-on-surface-variant py-1 px-3 rounded-lg hover:text-on-surface" id="bottom-tab-schueler" onclick="switchTab('schueler')"><span class="material-symbols-outlined text-xl">school</span><span class="">Schüler</span></button><button class="flex flex-col items-center gap-0.5 text-xs font-medium text-on-surface-variant py-1 px-3 rounded-lg hover:text-on-surface" id="bottom-tab-eltern" onclick="switchTab('eltern')"><span class="material-symbols-outlined text-xl">family_restroom</span><span class="">Eltern</span></button></nav>
 </body></html>
